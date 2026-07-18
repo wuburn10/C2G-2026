@@ -6,6 +6,8 @@
 <title>Go Deeper · Called to Greatness 2026 · UPC West Malaysia Family Camp</title>
 <meta name="description" content="Called to Greatness 2026 — Go Deeper. UPC West Malaysia District Annual Family Camp. 30 July – 2 August 2026, Grand Kampar Hotel. Speakers: Rev. Joel Bean & Rev. Lonnie Vestal." />
 <meta name="theme-color" content="#07181d" />
+<link rel="icon" type="image/png" href="assets/img/C2G.png" />
+<link rel="apple-touch-icon" href="assets/img/C2G.png" />
 
 <!-- Open Graph -->
 <meta property="og:title" content="Go Deeper · Called to Greatness 2026" />
@@ -209,11 +211,9 @@ header.nav.scrolled{
 .hero-logos{
   display:flex;align-items:center;justify-content:center;gap:22px;margin-bottom:38px;
 }
-.hero-logos .c2g{font-size:2.2rem}
-.hero-logos .divider{width:1px;height:38px;background:var(--line-strong)}
-.hero-logos .upcwm{display:flex;align-items:center;gap:10px;color:var(--ink)}
-.hero-logos .upcwm .globe{width:34px;height:34px}
-.hero-logos .upcwm span{font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-dim);text-align:left;line-height:1.3}
+.hero-logos .brand-logo{height:76px;width:auto;object-fit:contain;display:block}
+.hero-logos .brand-logo.c2g-logo{height:82px}
+.hero-logos .divider{width:1px;height:52px;background:var(--line-strong)}
 
 .hero h1{margin:0 auto}
 .hero .pretitle{
@@ -289,6 +289,8 @@ header.nav.scrolled{
    ============================================================ */
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
 .reveal.in{opacity:1;transform:none}
+/* when GSAP drives the entrances, hand full control to it (no CSS transitions fighting inline styles) */
+.gsap-on .reveal{opacity:1;transform:none;transition:none}
 @media (prefers-reduced-motion:reduce){
   .reveal{opacity:1;transform:none;transition:none}
   .bubbles,.scroll-cue .dot::after{display:none}
@@ -308,44 +310,45 @@ header.nav.scrolled{
 .msg{display:flex;flex-direction:column;gap:18px}
 .msg-head{display:flex;align-items:center;gap:16px}
 .portrait{
+  position:relative;
   width:74px;height:74px;border-radius:16px;flex:none;overflow:hidden;
   background:linear-gradient(150deg,var(--teal-deep),#0a1418 60%,var(--crimson));
   display:flex;align-items:center;justify-content:center;
   font-family:'Playfair Display';font-style:italic;font-size:1.5rem;color:#fff;
   border:1px solid var(--line-strong);
 }
+.portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center}
 .msg-head h3{font-family:'Playfair Display';font-size:1.25rem;font-weight:700}
 .msg-head p{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--teal)}
 .msg p.body{color:var(--ink-dim);font-size:.97rem}
 .msg .scrip{font-family:'Playfair Display';font-style:italic;color:var(--ink);border-left:2px solid var(--crimson);padding-left:14px;margin:4px 0}
-
-/* speakers feature */
-.speaker-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+/* speakers — portrait + message together */
+.speaker-grid{display:flex;flex-direction:column;gap:26px}
 .speaker{
-  position:relative;overflow:hidden;border-radius:var(--r);
+  overflow:hidden;border-radius:var(--r);
   border:1px solid var(--line);background:var(--glass);
-  display:flex;flex-direction:column;
+  padding:26px 28px;
 }
 .speaker .photo{
-  aspect-ratio:4/3;width:100%;
+  float:left;width:clamp(190px,24vw,256px);aspect-ratio:1/1;
+  margin:4px 30px 14px 0;border-radius:14px;overflow:hidden;position:relative;
   background:
     radial-gradient(80% 80% at 30% 20%, rgba(45,212,191,.25), transparent 60%),
     linear-gradient(160deg,#0c2429,#0a0f14 55%,#1c0a11);
-  display:flex;align-items:flex-end;justify-content:center;position:relative;
+  display:flex;align-items:flex-end;justify-content:center;
 }
-.speaker .photo .mono{
-  font-family:'Playfair Display';font-style:italic;font-weight:900;font-size:5rem;
-  color:rgba(255,255,255,.12);position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+.speaker .photo img{
+  width:100%;height:100%;object-fit:contain;object-position:center bottom;display:block;
 }
 .speaker .photo .badge{
-  position:absolute;top:14px;left:14px;background:var(--crimson);color:#fff;
-  font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;
-  padding:5px 12px;border-radius:999px;
+  position:absolute;top:12px;left:12px;z-index:1;background:var(--crimson);color:#fff;
+  font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;
+  padding:4px 11px;border-radius:999px;
 }
-.speaker .body{padding:22px 24px 26px}
-.speaker .body h3{font-family:'Playfair Display';font-size:1.5rem;font-weight:700}
-.speaker .body .role{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--teal);margin-bottom:12px}
-.speaker .body p{color:var(--ink-dim);font-size:.94rem}
+.speaker h3{font-family:'Playfair Display';font-size:1.6rem;font-weight:700}
+.speaker .role{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--teal);margin-bottom:14px}
+.speaker .sp-msg{color:var(--ink-dim);font-size:.97rem;margin-bottom:12px}
+.speaker .scrip{font-family:'Playfair Display';font-style:italic;color:var(--ink);border-left:2px solid var(--crimson);padding-left:14px;margin:6px 0 14px}
 
 /* ============================================================
    Schedule
@@ -552,6 +555,9 @@ footer .credit{margin-top:18px;font-size:.72rem;color:var(--ink-faint)}
   .hero{padding-top:104px}
   .hero .pretitle{letter-spacing:.2em;font-size:.72rem}
   .hero-meta .pill{width:100%;max-width:340px;justify-content:center}
+  /* speaker portrait stacks above the message on small screens */
+  .speaker{padding:22px 20px}
+  .speaker .photo{float:none;width:100%;max-width:320px;margin:0 0 18px}
   /* stack the live status banner so its cells don't force horizontal overflow */
   .sched-status{flex-direction:column;align-items:stretch;gap:16px}
   .ss-left{min-width:0}
@@ -561,6 +567,15 @@ footer .credit{margin-top:18px;font-size:.72rem;color:var(--ink-faint)}
 </style>
 </head>
 <body>
+
+<!-- reusable icons (referenced via <use> below) -->
+<svg class="svg-sprite" aria-hidden="true" focusable="false" style="position:absolute;width:0;height:0;overflow:hidden">
+  <defs>
+    <symbol id="ic-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+    <symbol id="ic-fb" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z"/></symbol>
+    <symbol id="ic-ig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"/></symbol>
+  </defs>
+</svg>
 
 <div class="depth-bg" aria-hidden="true"></div>
 <div class="bubbles" aria-hidden="true" id="bubbles"></div>
@@ -614,17 +629,9 @@ footer .credit{margin-top:18px;font-size:.72rem;color:var(--ink-faint)}
 <main id="top">
 <section class="hero" id="hero">
   <div class="hero-logos reveal">
-    <span class="c2g"><b>C</b><i>2</i><b>G</b></span>
+    <img class="brand-logo c2g-logo" src="assets/img/C2G.png" alt="Called to Greatness 2026 logo" />
     <span class="divider"></span>
-    <span class="upcwm">
-      <svg class="globe" viewBox="0 0 40 40" aria-label="UPC West Malaysia logo">
-        <circle cx="20" cy="20" r="16"/>
-        <ellipse cx="20" cy="20" rx="7" ry="16"/>
-        <line x1="4" y1="20" x2="36" y2="20"/>
-        <path d="M6 12 H34 M6 28 H34"/>
-      </svg>
-      <span>United<br/>Pentecostal<br/>Church WM</span>
-    </span>
+    <img class="brand-logo" src="assets/img/UPCWM.png" alt="United Pentecostal Church West Malaysia logo" />
   </div>
 
   <h1>
@@ -698,7 +705,7 @@ footer .credit{margin-top:18px;font-size:.72rem;color:var(--ink-faint)}
     <div class="welcome-grid">
       <article class="card msg reveal">
         <div class="msg-head">
-          <div class="portrait">SP</div>
+          <div class="portrait">SP<img src="assets/img/sam-ponusamy.png" alt="Rev. Sam Ponusamy" onerror="this.remove()" /></div>
           <div>
             <h3>Rev. Sam Ponusamy</h3>
             <p>General Superintendent · UPC Malaysia</p>
@@ -711,7 +718,7 @@ footer .credit{margin-top:18px;font-size:.72rem;color:var(--ink-faint)}
 
       <article class="card msg reveal">
         <div class="msg-head">
-          <div class="portrait">JC</div>
+          <div class="portrait">JC<img src="assets/img/joel-charles.png" alt="Rev. Joel Charles" onerror="this.remove()" /></div>
           <div>
             <h3>Rev. Joel Charles</h3>
             <p>District Superintendent · UPCWM</p>
@@ -738,25 +745,25 @@ footer .credit{margin-top:18px;font-size:.72rem;color:var(--ink-faint)}
       <article class="speaker reveal">
         <div class="photo">
           <span class="badge">Guest Speaker</span>
-          <span class="mono">JB</span>
+          <img src="assets/img/joel-bean.png" alt="Rev. Joel Bean" loading="lazy" decoding="async" />
         </div>
-        <div class="body">
-          <h3>Rev. Joel Bean</h3>
-          <p class="role">Guest Speaker</p>
-          <p>A passionate preacher of the apostolic message, Rev. Joel Bean carries a heart to see the Church awakened and the lost reached. We look forward to the Word he will bring as we go deeper together. <em>(Full bio to be added.)</em></p>
-        </div>
+        <h3>Rev. Joel Bean</h3>
+        <p class="role">Guest Speaker</p>
       </article>
 
       <article class="speaker reveal">
         <div class="photo">
           <span class="badge">Guest Speaker</span>
-          <span class="mono">LV</span>
+          <img src="assets/img/lonnie-vestal.png" alt="Rev. Lonnie Vestal" loading="lazy" decoding="async" />
         </div>
-        <div class="body">
-          <h3>Rev. Lonnie Vestal</h3>
-          <p class="role">Guest Speaker</p>
-          <p>Rev. Lonnie Vestal ministers with a depth of teaching and a shepherd&rsquo;s heart, calling believers into a closer, more intimate walk with God. <em>(Full bio to be added.)</em></p>
-        </div>
+        <h3>Rev. Lonnie Vestal</h3>
+        <p class="role">Guest Speaker · A Word of Welcome</p>
+        <p class="sp-msg">Dear Brothers and Sisters, we come once again to this wonderful time of spiritual refreshing. The theme for this year&rsquo;s Called to Greatness is <em>&ldquo;Deeper.&rdquo;</em> The Apostle Paul greatly desired that his saints would deepen their knowledge of Jesus Christ when he wrote:</p>
+        <p class="scrip">&ldquo;That Christ may dwell in your hearts by faith; that ye, being rooted and grounded in love, may be able to comprehend with all saints what is the breadth, and length, and depth, and height; and to know the love of Christ, which passeth knowledge, that ye might be filled with all the fulness of God.&rdquo; — Ephesians 3:17&ndash;19</p>
+        <p class="sp-msg">In just two verses, Paul describes close fellowship with Jesus four different ways: &ldquo;Christ dwelling in your heart,&rdquo; &ldquo;being rooted and grounded in love,&rdquo; &ldquo;knowing the love of Christ,&rdquo; and &ldquo;filled with all the fulness of God.&rdquo; If Paul were to condense his instructions into one statement, he might have simply said, <em>&ldquo;go deeper.&rdquo;</em></p>
+        <p class="sp-msg">This week, we desire to go deeper into the things of the Spirit, and Jesus beckons us, invites us to a deeper walk with Him, a deeper knowledge of His love, a deeper understanding of His will for our lives.</p>
+        <p class="sp-msg">Brothers and sisters, this is a week of visitation! Let us be renewed with power from on high. Let us be strengthened in His love, and let us go deeper in Him than ever before.</p>
+        <p class="scrip" style="border:none;padding-left:0">Yours in Christ,<br/>Rev. Lonnie Vestal</p>
       </article>
     </div>
   </div>
@@ -804,7 +811,7 @@ footer .credit{margin-top:18px;font-size:.72rem;color:var(--ink-faint)}
         <div class="slot" data-start="2026-07-30T18:00:00+08:00"><div class="time">6:00 PM</div><div class="title">Dinner</div></div>
         <div class="slot" data-start="2026-07-30T19:30:00+08:00"><div class="time">7:30 PM</div><div class="title">Prayer</div></div>
         <div class="slot major" data-start="2026-07-30T20:00:00+08:00"><div class="time">8:00 PM</div><div class="title">Opening Service</div>
-          <div class="detail">Opening Address — <span class="who">Rev. Joel Charles</span> · Worship · Sermon — <span class="who">Rev. Joel Bean</span></div>
+          <div class="detail">Opening Address — <span class="who">Rev. Sam Ponusamy</span> · Sermon — <span class="who">Rev. Lonnie Vestal</span></div>
         </div>
         <div class="slot" data-start="2026-07-30T22:30:00+08:00"><div class="time">10:30 PM</div><div class="title">Dismiss</div></div>
       </div>
@@ -815,23 +822,20 @@ footer .credit{margin-top:18px;font-size:.72rem;color:var(--ink-faint)}
       <div class="timeline">
         <div class="slot" data-start="2026-07-31T07:00:00+08:00"><div class="time">7:00 AM</div><div class="title">Prayer</div></div>
         <div class="slot" data-start="2026-07-31T08:00:00+08:00"><div class="time">8:00 AM</div><div class="title">Breakfast</div></div>
-        <div class="slot major" data-start="2026-07-31T09:00:00+08:00"><div class="time">9:00 AM</div><div class="title">Morning Service</div>
-          <div class="detail">Worship · Day Session 1 — <span class="who">Rev. Lonnie Vestal</span></div>
+        <div class="slot" data-start="2026-07-31T09:00:00+08:00"><div class="time">9:00 AM</div><div class="title">Morning Service</div></div>
+        <div class="slot major" data-start="2026-07-31T09:45:00+08:00"><div class="time">9:45 AM</div><div class="title">Day Session 1</div>
+          <div class="detail"><span class="who">Rev. Joel Bean</span></div>
         </div>
         <div class="slot" data-start="2026-07-31T10:45:00+08:00"><div class="time">10:45 AM</div><div class="title">Break</div></div>
         <div class="slot" data-start="2026-07-31T11:00:00+08:00"><div class="time">11:00 AM</div><div class="title">Day Session 2 — Breakout</div>
-          <div class="tracklist">
-            <div class="tk"><b>Adults</b><span>Rev. Joel Bean</span></div>
-            <div class="tk"><b>Youths</b><span>Rev. Lonnie Vestal</span></div>
-            <div class="tk"><b>Kids</b><span>Children&rsquo;s Hall</span></div>
-          </div>
+          <div class="detail">Adults — Treasure Hall · <span class="who">Rev. Lonnie Vestal</span><br>Youths — Timah 1 · <span class="who">Rev. Joel Bean</span><br>Kids — Pewter Hall · <span class="who">Sis. Kristina</span></div>
         </div>
-        <div class="slot" data-start="2026-07-31T12:30:00+08:00"><div class="time">12:30 PM</div><div class="title">Lunch</div><div class="detail">12:30 – 1:30 PM</div></div>
-        <div class="slot" data-start="2026-07-31T15:00:00+08:00"><div class="time">3:00 PM</div><div class="title">Recreational Activities</div><div class="detail">3:00 – 5:00 PM</div></div>
+        <div class="slot" data-start="2026-07-31T12:30:00+08:00"><div class="time">12:30 PM</div><div class="title">Lunch</div><div class="detail">Outside</div></div>
+        <div class="slot" data-start="2026-07-31T15:00:00+08:00"><div class="time">3:00 – 5:00 PM</div><div class="title">Recreational Activities</div></div>
         <div class="slot" data-start="2026-07-31T18:00:00+08:00"><div class="time">6:00 PM</div><div class="title">Dinner</div></div>
         <div class="slot" data-start="2026-07-31T19:30:00+08:00"><div class="time">7:30 PM</div><div class="title">Prayer</div></div>
         <div class="slot major" data-start="2026-07-31T20:00:00+08:00"><div class="time">8:00 PM</div><div class="title">Evening Service</div>
-          <div class="detail">Worship · Sermon — <span class="who">Rev. Lonnie Vestal</span></div>
+          <div class="detail">Sermon — <span class="who">Rev. Joel Bean</span></div>
         </div>
         <div class="slot" data-start="2026-07-31T22:30:00+08:00"><div class="time">10:30 PM</div><div class="title">Dismiss</div></div>
       </div>
@@ -842,23 +846,20 @@ footer .credit{margin-top:18px;font-size:.72rem;color:var(--ink-faint)}
       <div class="timeline">
         <div class="slot" data-start="2026-08-01T07:00:00+08:00"><div class="time">7:00 AM</div><div class="title">Prayer</div></div>
         <div class="slot" data-start="2026-08-01T08:00:00+08:00"><div class="time">8:00 AM</div><div class="title">Breakfast</div></div>
-        <div class="slot major" data-start="2026-08-01T09:00:00+08:00"><div class="time">9:00 AM</div><div class="title">Morning Service</div>
-          <div class="detail">Worship · Day Session 3 — <span class="who">Rev. Joel Bean</span></div>
+        <div class="slot" data-start="2026-08-01T09:00:00+08:00"><div class="time">9:00 AM</div><div class="title">Morning Service</div></div>
+        <div class="slot major" data-start="2026-08-01T09:45:00+08:00"><div class="time">9:45 AM</div><div class="title">Day Session 3</div>
+          <div class="detail"><span class="who">Rev. Lonnie Vestal</span></div>
         </div>
         <div class="slot" data-start="2026-08-01T10:45:00+08:00"><div class="time">10:45 AM</div><div class="title">Break</div></div>
         <div class="slot" data-start="2026-08-01T11:00:00+08:00"><div class="time">11:00 AM</div><div class="title">Day Session 4 — Breakout</div>
-          <div class="tracklist">
-            <div class="tk"><b>Men</b><span>Rev. Bean &amp; Rev. Vestal</span></div>
-            <div class="tk"><b>Ladies</b><span>Ladies&rsquo; Hall</span></div>
-            <div class="tk"><b>Kids</b><span>Children&rsquo;s Hall</span></div>
-          </div>
+          <div class="detail">Men — Loc. TBC · <span class="who">Rev. Bean, Rev. Vestal &amp; Rev. Dixon</span><br>Ladies — Loc. TBC · <span class="who">Sis. Bean, Sis. Vestal &amp; Sis. Dixon</span><br>Kids — Pewter Hall · <span class="who">Sis. Evelyn</span></div>
         </div>
-        <div class="slot" data-start="2026-08-01T12:30:00+08:00"><div class="time">12:30 PM</div><div class="title">Lunch</div><div class="detail">12:30 – 1:30 PM</div></div>
-        <div class="slot" data-start="2026-08-01T15:00:00+08:00"><div class="time">3:00 PM</div><div class="title">Recreational Activities</div><div class="detail">3:00 – 5:00 PM</div></div>
+        <div class="slot" data-start="2026-08-01T12:30:00+08:00"><div class="time">12:30 PM</div><div class="title">Lunch</div><div class="detail">12:30 – 1:30 PM · In House</div></div>
+        <div class="slot" data-start="2026-08-01T15:00:00+08:00"><div class="time">3:00 – 5:00 PM</div><div class="title">Recreational Activities</div></div>
         <div class="slot" data-start="2026-08-01T18:00:00+08:00"><div class="time">6:00 PM</div><div class="title">Dinner</div></div>
         <div class="slot" data-start="2026-08-01T19:30:00+08:00"><div class="time">7:30 PM</div><div class="title">Prayer</div></div>
         <div class="slot major" data-start="2026-08-01T20:00:00+08:00"><div class="time">8:00 PM</div><div class="title">Evening Service</div>
-          <div class="detail">Worship &amp; Choir · Sermon — <span class="who">Rev. Joel Bean</span></div>
+          <div class="detail">Sermon — <span class="who">Rev. Joel Bean</span><br>Holy Communion</div>
         </div>
         <div class="slot" data-start="2026-08-01T22:30:00+08:00"><div class="time">10:30 PM</div><div class="title">Dismiss</div></div>
       </div>
@@ -869,18 +870,17 @@ footer .credit{margin-top:18px;font-size:.72rem;color:var(--ink-faint)}
       <div class="timeline">
         <div class="slot" data-start="2026-08-02T07:00:00+08:00"><div class="time">7:00 AM</div><div class="title">Prayer</div></div>
         <div class="slot" data-start="2026-08-02T08:00:00+08:00"><div class="time">8:00 AM</div><div class="title">Breakfast</div></div>
-        <div class="slot major" data-start="2026-08-02T09:00:00+08:00"><div class="time">9:00 AM</div><div class="title">Closing Service</div>
-          <div class="detail">Worship · Closing Messages — <span class="who">Rev. Joel Bean &amp; Rev. Lonnie Vestal</span> · Closing Address — <span class="who">Rev. Joel Charles</span> · Group Photography</div>
+        <div class="slot" data-start="2026-08-02T09:00:00+08:00"><div class="time">9:00 AM</div><div class="title">Morning Service</div></div>
+        <div class="slot major" data-start="2026-08-02T09:45:00+08:00"><div class="time">9:45 AM</div><div class="title">Closing Sessions</div>
+          <div class="detail">Closing Messages — <span class="who">Rev. Joel Bean &amp; Rev. Lonnie Vestal</span><br>Closing Address — <span class="who">Rev. Joel Charles</span></div>
         </div>
-        <div class="slot" data-start="2026-08-02T11:30:00+08:00"><div class="time">11:30 AM</div><div class="title">Checkout</div><div class="detail">Rooms to be vacated by 12:00 PM</div></div>
-        <div class="slot" data-start="2026-08-02T12:30:00+08:00" data-end="2026-08-02T13:30:00+08:00"><div class="time">12:30 PM</div><div class="title">Lunch</div><div class="detail">12:30 – 1:30 PM</div></div>
+        <div class="slot" data-start="2026-08-02T11:00:00+08:00"><div class="time">11:00 AM</div><div class="title">Group Photo Session</div>
+          <div class="detail"><span class="who">Bro. Ian</span></div>
+        </div>
+        <div class="slot" data-start="2026-08-02T12:00:00+08:00"><div class="time">12:00 PM</div><div class="title">Checkout</div><div class="detail">Rooms to be vacated by 12:00 PM</div></div>
+        <div class="slot" data-start="2026-08-02T12:30:00+08:00"><div class="time">12:30 PM</div><div class="title">Lunch</div><div class="detail">12:30 – 1:30 PM</div></div>
       </div>
     </div>
-
-    <p class="sched-note">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-      Participants are encouraged to wear the Camp T-Shirt on the closing day. Schedule timings may be adjusted as the Spirit leads.
-    </p>
   </div>
 </section>
 
@@ -921,21 +921,24 @@ footer .credit{margin-top:18px;font-size:.72rem;color:var(--ink-faint)}
         <div class="rule-item">
           <b><span class="rule-num">4</span>Meals</b>
           <ul>
-            <li>Breakfast: 8:00 – 9:00 AM</li>
-            <li>Dinner: 6:00 – 7:00 PM</li>
-            <li>Lunch (Sun): 12:30 – 1:30 PM</li>
+            <li>Breakfast (Fri–Sun): 8:00 – 9:00 AM</li>
+            <li>Dinner (Thu–Sat): 6:00 – 7:00 PM</li>
+            <li>Lunch (Fri–Sun): 12:30 – 1:30 PM</li>
           </ul>
         </div>
       </article>
 
       <article class="card rule-block reveal">
         <h3>From Grand Kampar Hotel</h3>
-        <span class="tag">Hotel policy · please confirm with venue</span>
-        <div class="rule-item"><p><span class="rule-num">1</span>No durian or mangosteen is to be brought into the hotel.</p></div>
-        <div class="rule-item"><p><span class="rule-num">2</span>Strictly no smoking in the hotel rooms and lobby area.</p></div>
-        <div class="rule-item"><p><span class="rule-num">3</span>No wet attire in the lobby or in the lift.</p></div>
-        <div class="rule-item"><p><span class="rule-num">4</span>Please observe the maximum capacity of the lift.</p></div>
-        <div class="rule-item"><p><span class="rule-num">5</span>Return all key cards to the reception upon check-out. Lost cards may be chargeable per the hotel&rsquo;s policy.</p></div>
+        <span class="tag">Hotel policy</span>
+        <div class="rule-item"><p><span class="rule-num">1</span>Campers are NOT to take the mattress down from the bed and sleep on the divan. Penalty is RM70. If the divan is broken there will be a charge of RM400.00 per divan.</p></div>
+        <div class="rule-item"><p><span class="rule-num">2</span>The hotel will consider non-attendance only in special cases, such as hospitalisation or the passing of an immediate family member.</p></div>
+        <div class="rule-item"><p><span class="rule-num">3</span>Meals are buffet, with replenishment only during the first hour.</p></div>
+        <div class="rule-item"><p><span class="rule-num">4</span>Check-in is at 3:00 PM on the first day of camp; check-out is at 12:00 PM on the last day. Each room is given two key cards — lost key cards will be charged RM20 per card.</p></div>
+        <div class="rule-item"><p><span class="rule-num">5</span>Any destruction or dirtying of walls, carpets in the seminar halls, or other hotel property will incur a minimum charge of RM300.00 from Housekeeping for cleaning/repainting.</p></div>
+        <div class="rule-item"><p><span class="rule-num">6</span>Please ensure all food brought into the seminar hall is halal. Non-halal food may be brought into campers&rsquo; own rooms. No durians, please.</p></div>
+        <div class="rule-item"><p><span class="rule-num">7</span>Each hotel room is equipped with a fridge and a hair dryer.</p></div>
+        <div class="rule-item"><p><span class="rule-num">8</span>An iron and ironing board are available in the corridor outside the hotel rooms for campers to use.</p></div>
       </article>
     </div>
   </div>
@@ -958,17 +961,16 @@ footer .credit{margin-top:18px;font-size:.72rem;color:var(--ink-faint)}
         <h4>Apostolic Lighthouse JB</h4>
         <p class="pastor">Pastor Andrew Surian</p>
         <p class="addr">No. 12, Jln. Layang 5/2, Taman Perling, 81200 JB</p>
-        <div class="links"><a href="tel:+60163375389">016-3375389</a><span>@GospelLighthouseJB</span></div>
+        <div class="links"><a href="tel:+60163375389"><svg><use href="#ic-phone"/></svg>016-3375389</a><a href="https://www.facebook.com/GospelLighthouseJB" target="_blank" rel="noopener"><svg><use href="#ic-fb"/></svg>GospelLighthouseJB</a></div>
       </article>
 
       <article class="card church reveal">
         <span class="loc">Kampar, Perak</span>
         <h4>Gereja Apostolic Kampar</h4>
         <p class="pastor">Pastor Peter Moijih</p>
-        <p class="addr">DT 3676-1, Jln. Angkasa Nuri 21, Taman Angkasa Nuri</p>
         <div class="links">
-          <a href="tel:+60107940239"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>010-7940239</a>
-          <span>membinakerajaannya</span>
+          <a href="tel:+60107940239"><svg><use href="#ic-phone"/></svg>010-7940239</a>
+          <a href="https://www.instagram.com/membinakerajaannya" target="_blank" rel="noopener"><svg><use href="#ic-ig"/></svg>membinakerajaannya</a>
         </div>
       </article>
 
@@ -977,7 +979,7 @@ footer .credit{margin-top:18px;font-size:.72rem;color:var(--ink-faint)}
         <h4>Gospel Lighthouse Cheras</h4>
         <p class="pastor">Pastor Joel Charles</p>
         <p class="addr">3A, Jln. Emas 4, Taman Emas, 43000 Cheras</p>
-        <div class="links"><a href="tel:+60122047484">012-2047484</a><span>@GLCheras</span></div>
+        <div class="links"><a href="tel:+60122047484"><svg><use href="#ic-phone"/></svg>012-2047484</a><a href="https://www.facebook.com/GLCheras" target="_blank" rel="noopener"><svg><use href="#ic-fb"/></svg>GLCheras</a><a href="https://www.instagram.com/GLCheras" target="_blank" rel="noopener"><svg><use href="#ic-ig"/></svg>GLCheras</a></div>
       </article>
 
       <article class="card church reveal">
@@ -985,7 +987,7 @@ footer .credit{margin-top:18px;font-size:.72rem;color:var(--ink-faint)}
         <h4>Gospel Lighthouse Church</h4>
         <p class="pastor">Pastor Sam Ponusamy</p>
         <p class="addr">No. 33-1, Jln. Sri Pinang 1, Taman Sri Pinang, 70200 Labu</p>
-        <div class="links"><a href="tel:+60126382977">012-6382977</a></div>
+        <div class="links"><a href="tel:+60126382977"><svg><use href="#ic-phone"/></svg>012-6382977</a></div>
       </article>
 
       <article class="card church reveal">
@@ -993,14 +995,15 @@ footer .credit{margin-top:18px;font-size:.72rem;color:var(--ink-faint)}
         <h4>Injil Cahaya Manjung Perak</h4>
         <p class="pastor">Pastor Lorance</p>
         <p class="addr">8 Tingkat Atas, Jalan Lumut, Taman Sentosa 2, 32000 Sitiawan</p>
-        <div class="links"><a href="tel:+601136433122">011-36433122</a></div>
+        <div class="links"><a href="tel:+601136433122"><svg><use href="#ic-phone"/></svg>011-36433122</a></div>
       </article>
 
       <article class="card church reveal">
         <span class="loc">Malacca</span>
         <h4>Life Church</h4>
         <p class="pastor">Pastor Daniel Lian</p>
-        <div class="links"><a href="tel:+601110105359">011-10105359</a><span>@lifechurch.malacca</span></div>
+        <p class="addr">Nuri 21, Taman Angkasa Nuri, DT 3676-1, Jln. Angkasa</p>
+        <div class="links"><a href="tel:+601110105359"><svg><use href="#ic-phone"/></svg>011-10105359</a><a href="https://www.facebook.com/UPCMalacca" target="_blank" rel="noopener"><svg><use href="#ic-fb"/></svg>UPCMalacca</a><a href="https://www.instagram.com/lifechurch.malacca" target="_blank" rel="noopener"><svg><use href="#ic-ig"/></svg>lifechurch.malacca</a></div>
       </article>
 
       <article class="card church reveal">
@@ -1008,7 +1011,15 @@ footer .credit{margin-top:18px;font-size:.72rem;color:var(--ink-faint)}
         <h4>Lighthouse Fellowship PJ</h4>
         <p class="pastor">Pastor Julie Anthony</p>
         <p class="addr">51-2, Block G, Jln. PJU 1/37, Dataran Prima</p>
-        <div class="links"><a href="tel:+60166286504">016-6286504</a><a href="https://lfpj.church" target="_blank" rel="noopener">lfpj.church</a></div>
+        <div class="links"><a href="tel:+60166286504"><svg><use href="#ic-phone"/></svg>016-6286504</a><a href="https://www.facebook.com/lighthousefellowshippj" target="_blank" rel="noopener"><svg><use href="#ic-fb"/></svg>lighthousefellowshippj</a><a href="https://www.instagram.com/lfpj.church" target="_blank" rel="noopener"><svg><use href="#ic-ig"/></svg>lfpj.church</a></div>
+      </article>
+
+      <article class="card church reveal">
+        <span class="loc">Kuala Lumpur</span>
+        <h4>New Life Sanctuary KL</h4>
+        <p class="pastor">Pastor Super</p>
+        <p class="addr">Cairnhill Hotel, 3½ Miles, 478, Jln. Sultan Azlan Shah, Jalan Ipoh, 51200 Kuala Lumpur</p>
+        <div class="links"><a href="tel:+60162440677"><svg><use href="#ic-phone"/></svg>016-2440677</a></div>
       </article>
 
       <article class="card church reveal">
@@ -1016,15 +1027,7 @@ footer .credit{margin-top:18px;font-size:.72rem;color:var(--ink-faint)}
         <h4>Penganut Kristian Apostolik</h4>
         <p class="pastor">Pastor Muru</p>
         <p class="addr">84-2, Jalan Metro Perdana Barat 3, Kepong, 52100 KL</p>
-        <div class="links"><a href="tel:+60123397386">012-339 7386</a><span>@pkapostolik</span></div>
-      </article>
-
-      <article class="card church reveal">
-        <span class="loc">Kuala Lumpur</span>
-        <h4>Pentecostals of KL</h4>
-        <p class="pastor">Pastor T.A. Leow</p>
-        <p class="addr">19-3, Jalan Metro Perdana Barat 1, Taman Usahawan Kepong, 52000 KL</p>
-        <div class="links"><a href="tel:+60340503312">03-40503312</a><a href="https://pokl.org" target="_blank" rel="noopener">pokl.org</a></div>
+        <div class="links"><a href="tel:+60123397386"><svg><use href="#ic-phone"/></svg>012-339 7386</a><a href="https://www.facebook.com/pkapostolik" target="_blank" rel="noopener"><svg><use href="#ic-fb"/></svg>pkapostolik</a><a href="https://www.instagram.com/pkapostolik" target="_blank" rel="noopener"><svg><use href="#ic-ig"/></svg>pkapostolik</a></div>
       </article>
 
       <article class="card church reveal">
@@ -1032,14 +1035,14 @@ footer .credit{margin-top:18px;font-size:.72rem;color:var(--ink-faint)}
         <h4>Persatuan Penganut Kristian Pentakosta</h4>
         <p class="pastor">Pastor Amani</p>
         <p class="addr">Batu 7½, Jln. Pahang, 35000 Tapah</p>
-        <div class="links"><a href="tel:+60174710847">017-4710847</a></div>
+        <div class="links"><a href="tel:+60174710847"><svg><use href="#ic-phone"/></svg>017-4710847</a></div>
       </article>
 
       <article class="card church reveal">
         <span class="loc">Lubuk Petai, Perak</span>
         <h4>UPC Lubuk Petai</h4>
         <p class="pastor">Pastor Dahlan</p>
-        <div class="links"><a href="tel:+60174495042">017-4495042</a></div>
+        <div class="links"><a href="tel:+60174495042"><svg><use href="#ic-phone"/></svg>017-4495042</a></div>
       </article>
 
     </div>
@@ -1051,76 +1054,66 @@ footer .credit{margin-top:18px;font-size:.72rem;color:var(--ink-faint)}
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="sec-no">06</span>
-      <span class="kicker">Through the Year</span>
-      <h2 class="sec-title">UPC WM <em>Events</em></h2>
-      <p class="lead">A glimpse of how our district gathers, grows and reaches out beyond camp.</p>
-    </div>
-
-    <div class="events-grid">
-      <article class="card event reveal">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20M2 12h20"/></svg></div>
-        <h4>Futsal Tournament</h4>
-        <p>The Annual UPC WM Futsal Tournament at X-Park PJ South drew united participation from across West Malaysia.</p>
-      </article>
-      <article class="card event reveal">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3v18M18 3v18M6 12h12"/><circle cx="6" cy="7" r="2"/><circle cx="18" cy="17" r="2"/></svg></div>
-        <h4>Pickleball Championships</h4>
-        <p>The inaugural Pickleball Championships added excitement and inclusivity, fostering fellowship and outreach into the community.</p>
-      </article>
-      <article class="card event reveal">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-        <h4>Men&rsquo;s Conference</h4>
-        <p>Themed &ldquo;Iron Sharpening Iron,&rdquo; it inspired men to grow in faith and brotherhood, birthing the Ironmen prayer group.</p>
-      </article>
-      <article class="card event reveal">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
-        <h4>Children&rsquo;s Ministry Workshop</h4>
-        <p>30 teachers from 8 localities were equipped to put fresh lessons straight into practice — a brighter future for the next generation.</p>
-      </article>
-      <article class="card event reveal">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg></div>
-        <h4>Seminar Keluarga</h4>
-        <p>Families were brought together to strengthen bonds and build Christ-centred homes filled with love through practical teaching.</p>
-      </article>
-      <article class="card event reveal">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
-        <h4>Jom Lepak</h4>
-        <p>An exciting youth event — around 70 attendees, including the AYC group from the USA, enjoyed games, worship and a powerful altar call.</p>
-      </article>
-      <article class="card event reveal">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg></div>
-        <h4>Commissioned Summit</h4>
-        <p>Training young men and women in Bible-study teaching and personal evangelism through intensive sessions with leaders from the US and beyond.</p>
-      </article>
-      <article class="card event reveal">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1 2.5 3 6 3s6-2 6-3v-5"/><path d="M22 10v6"/></svg></div>
-        <h4>GATS Training</h4>
-        <p>The Global Association of Theological Studies equips men and women to reach their maximum potential in apostolic ministry.</p>
-      </article>
-      <article class="card event reveal">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></div>
-        <h4>Ladies Conference</h4>
-        <p>A gathering for the ladies of our district to be refreshed, encouraged and drawn deeper into the presence of God.</p>
-      </article>
-    </div>
-
-    <div class="sec-head reveal" style="margin-top:60px;margin-bottom:24px">
       <span class="kicker">Mark Your Calendar</span>
-      <h2 class="sec-title" style="font-size:clamp(1.6rem,4vw,2.4rem)">Upcoming <em>Events</em></h2>
+      <h2 class="sec-title">Upcoming <em>Events</em></h2>
+      <p class="lead">Gatherings across the district in the months ahead. Come, connect and grow with us.</p>
     </div>
+
     <div class="upcoming">
       <article class="card reveal">
-        <div class="date"><b>TBA</b><span>2026</span></div>
+        <div class="date"><b>8</b><span>Aug</span></div>
         <div>
-          <h4>Future Events</h4>
-          <p>Details for the next season of district events will be announced here. <em>(To be updated.)</em></p>
+          <h4>WM District Conference</h4>
+          <p>Held at HQ.</p>
         </div>
       </article>
       <article class="card reveal">
-        <div class="date"><b>TBA</b><span>2026</span></div>
+        <div class="date"><b>27&ndash;29</b><span>Aug</span></div>
         <div>
-          <h4>Stay Connected</h4>
-          <p>Follow our socials below for the latest on conferences, summits and youth gatherings.</p>
+          <h4>General Conference</h4>
+          <p>In Kuching, Sarawak.</p>
+        </div>
+      </article>
+      <article class="card reveal">
+        <div class="date"><b>16</b><span>Sep</span></div>
+        <div>
+          <h4>Futsal Tournament</h4>
+          <p>The annual district futsal tournament.</p>
+        </div>
+      </article>
+      <article class="card reveal">
+        <div class="date"><b>16</b><span>Sep</span></div>
+        <div>
+          <h4>Malaysia Day of Prayer</h4>
+          <p>A united day of prayer across the nation.</p>
+        </div>
+      </article>
+      <article class="card reveal">
+        <div class="date"><b>9&ndash;10</b><span>Oct</span></div>
+        <div>
+          <h4>GATS Training Weekend</h4>
+          <p>Global Association of Theological Studies training, at HQ.</p>
+        </div>
+      </article>
+      <article class="card reveal">
+        <div class="date"><b>24</b><span>Oct</span></div>
+        <div>
+          <h4>4th WMD Minister&rsquo;s Meeting</h4>
+          <p>For ministers of the district, at HQ.</p>
+        </div>
+      </article>
+      <article class="card reveal">
+        <div class="date"><b>5&ndash;8</b><span>Nov</span></div>
+        <div>
+          <h4>WMD Family Camp (BM)</h4>
+          <p>The Bahasa Malaysia district family camp.</p>
+        </div>
+      </article>
+      <article class="card reveal">
+        <div class="date"><b>20&ndash;21</b><span>Nov</span></div>
+        <div>
+          <h4>WMD Ladies Conference</h4>
+          <p>A gathering for the ladies of the district.</p>
         </div>
       </article>
     </div>
@@ -1204,15 +1197,15 @@ footer .credit{margin-top:18px;font-size:.72rem;color:var(--ink-faint)}
         <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></span>
         <b>Linktree</b><span>linktr.ee/upc.wmfc</span>
       </a>
-      <a class="card social reveal" href="https://facebook.com/" target="_blank" rel="noopener">
+      <a class="card social reveal" href="https://www.facebook.com/upc.wmfc/" target="_blank" rel="noopener">
         <span class="ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z"/></svg></span>
         <b>Facebook</b><span>UPC West Malaysia</span>
       </a>
-      <a class="card social reveal" href="https://instagram.com/upc.wmfc" target="_blank" rel="noopener">
+      <a class="card social reveal" href="https://www.instagram.com/upcwm/" target="_blank" rel="noopener">
         <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"/></svg></span>
-        <b>Instagram</b><span>@upc.wmfc</span>
+        <b>Instagram</b><span>@upcwm</span>
       </a>
-      <a class="card social reveal" href="https://youtube.com/" target="_blank" rel="noopener">
+      <a class="card social reveal" href="https://www.youtube.com/@UPCWestMalaysia" target="_blank" rel="noopener">
         <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-2C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.41 19c1.71.46 8.59.46 8.59.46s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg></span>
         <b>YouTube</b><span>UPC West Malaysia</span>
       </a>
@@ -1242,10 +1235,20 @@ footer .credit{margin-top:18px;font-size:.72rem;color:var(--ink-faint)}
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
 </button>
 
+<!-- GSAP (CDN) — progressive enhancement; if offline the booklet falls back to its built-in reveals -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+
 <script>
 (function(){
   "use strict";
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var useGsap = !reduceMotion && typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined';
+  var animateSlots = null; /* assigned in the GSAP block below; used by activateDay */
+  if(useGsap){
+    gsap.registerPlugin(ScrollTrigger);
+    document.documentElement.classList.add('gsap-on');
+  }
 
   /* ---------- Bubbles ---------- */
   if(!reduceMotion){
@@ -1291,7 +1294,9 @@ footer .credit{margin-top:18px;font-size:.72rem;color:var(--ink-faint)}
 
   /* ---------- Reveal on scroll ---------- */
   var reveals=document.querySelectorAll('.reveal');
-  if('IntersectionObserver' in window && !reduceMotion){
+  if(useGsap){
+    /* GSAP block at the end of this script handles all entrances */
+  } else if('IntersectionObserver' in window && !reduceMotion){
     var io=new IntersectionObserver(function(entries){
       entries.forEach(function(en){
         if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
@@ -1329,8 +1334,12 @@ footer .credit{margin-top:18px;font-size:.72rem;color:var(--ink-faint)}
     });
     panels.forEach(function(p){
       var on=p.getAttribute('data-panel')===d;
+      var wasActive=p.classList.contains('active');
       p.classList.toggle('active',on);
-      if(on){ p.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');}); }
+      if(on){
+        p.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');});
+        if(animateSlots && !wasActive) animateSlots(p);
+      }
     });
   }
   var userPicked=false;
@@ -1493,6 +1502,82 @@ footer .credit{margin-top:18px;font-size:.72rem;color:var(--ink-faint)}
 
   /* ---------- Back to top ---------- */
   totop.addEventListener('click',function(){ window.scrollTo({top:0,behavior:reduceMotion?'auto':'smooth'}); });
+
+  /* ---------- GSAP enhancements (skipped offline or with reduced motion) ---------- */
+  if(useGsap){
+    gsap.defaults({ease:'power3.out', duration:0.8});
+
+    /* Hero entrance — one choreographed dive */
+    gsap.timeline()
+      .from('.hero-logos',{y:-24,autoAlpha:0,duration:0.7})
+      .from('.hero .pretitle',{y:16,autoAlpha:0,duration:0.6},'-=0.35')
+      .from('.hero .theme',{y:44,scale:0.94,autoAlpha:0,duration:1.1,ease:'power4.out'},'-=0.3')
+      .from('.hero .subtitle',{y:14,autoAlpha:0,duration:0.6},'-=0.65')
+      .from('.hero .verse',{y:14,autoAlpha:0,duration:0.6},'-=0.4')
+      .from('.hero-meta .pill',{y:14,autoAlpha:0,stagger:0.08,duration:0.5},'-=0.35')
+      .from('.hero-speakers .sp',{y:14,autoAlpha:0,stagger:0.08,duration:0.5},'-=0.3')
+      .from('.countdown .cd-cell',{y:18,scale:0.9,autoAlpha:0,stagger:0.07,duration:0.5,ease:'back.out(1.6)'},'-=0.25')
+      .from('.scroll-cue',{autoAlpha:0,duration:0.6},'-=0.1');
+
+    /* Scroll reveals — staggered batches (replaces the IO fallback) */
+    var batchTargets=Array.prototype.filter.call(reveals,function(el){
+      return !el.closest('.hero') && !el.classList.contains('day-panel');
+    });
+    gsap.set(batchTargets,{autoAlpha:0,y:28});
+    ScrollTrigger.batch(batchTargets,{
+      start:'top 88%',
+      once:true,
+      onEnter:function(batch){
+        gsap.to(batch,{autoAlpha:1,y:0,duration:0.8,stagger:0.08,overwrite:true});
+      }
+    });
+
+    /* Big section numbers drift slower than the page (depth parallax) */
+    document.querySelectorAll('.sec-no').forEach(function(el){
+      gsap.fromTo(el,{yPercent:-18},{
+        yPercent:22,ease:'none',
+        scrollTrigger:{trigger:el.closest('section')||el,start:'top bottom',end:'bottom top',scrub:true}
+      });
+    });
+
+    /* Hotel silhouette sinks as you leave the surface */
+    gsap.to('.hero-silhouette',{
+      yPercent:42,ease:'none',
+      scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}
+    });
+
+    /* Footer verse surfaces gently */
+    gsap.from('footer .wrap',{
+      autoAlpha:0,y:30,duration:1,
+      scrollTrigger:{trigger:'footer',start:'top 92%',once:true}
+    });
+
+    /* Day-tab switches: slots cascade in; clearProps hands opacity back to the
+       live-schedule classes (is-past dimming) once the tween ends */
+    animateSlots=function(panel){
+      gsap.fromTo(panel.querySelectorAll('.slot'),
+        {autoAlpha:0,x:-14},
+        {autoAlpha:1,x:0,duration:0.45,ease:'power2.out',stagger:0.05,overwrite:'auto',
+         clearProps:'opacity,visibility,transform'});
+    };
+
+    /* Safety net: if the page is visible but the animation clock never started
+       (aggressively throttled in-app webviews), drop the choreography and show
+       everything — content always wins over polish */
+    setTimeout(function(){
+      if(gsap.ticker.time===0 && !document.hidden){
+        ScrollTrigger.getAll().forEach(function(t){t.kill();});
+        gsap.killTweensOf('*');
+        document.querySelectorAll('.hero-logos,.hero .pretitle,.hero .theme,.hero .subtitle,.hero .verse,.hero-meta .pill,.hero-speakers .sp,.cd-cell,.scroll-cue,.hero-silhouette,footer .wrap,.sec-no,.slot').forEach(function(el){
+          el.style.opacity='';el.style.visibility='';el.style.transform='';
+        });
+        reveals.forEach(function(el){
+          el.style.opacity='';el.style.visibility='';el.style.transform='';
+          el.classList.add('in');
+        });
+      }
+    },4000);
+  }
 })();
 </script>
 </body>

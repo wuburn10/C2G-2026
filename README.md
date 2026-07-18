@@ -14,7 +14,9 @@ Open `index.html` in any web browser. That's it — no build step, no server req
 
 ## Tech
 - One `index.html`. Hand-written HTML + CSS + a small vanilla-JS block.
-- No frameworks, no dependencies, no build tooling.
+- No frameworks, no build tooling. GSAP + ScrollTrigger load from a CDN purely as a
+  progressive enhancement — offline (or with reduced motion) the booklet falls back to
+  its built-in IntersectionObserver reveals.
 - Responsive (phone → desktop), respects `prefers-reduced-motion`, keyboard-navigable.
 
 ## Features
