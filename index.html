@@ -126,12 +126,6 @@ h2.sec-title em{font-style:italic;color:var(--crimson-soft)}
 .wave path{fill:rgba(255,255,255,.02)}
 
 /* ---------- Brand marks ---------- */
-.c2g{
-  font-family:'Bebas Neue',sans-serif;letter-spacing:.04em;line-height:1;
-  display:inline-flex;align-items:baseline;
-}
-.c2g b{font-weight:400;color:var(--ink)}
-.c2g i{font-style:normal;color:var(--crimson);font-weight:400}
 .globe{display:block}
 .globe circle,.globe path,.globe ellipse,.globe line{
   fill:none;stroke:currentColor;stroke-width:1.4;
@@ -153,7 +147,7 @@ header.nav.scrolled{
   padding:10px 24px;
 }
 .nav-brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink)}
-.nav-brand .c2g{font-size:1.55rem}
+.nav-brand .brand-logo{height:40px;width:auto;display:block}
 .nav-brand small{display:block;font-size:.58rem;letter-spacing:.26em;color:var(--ink-faint);text-transform:uppercase;margin-top:2px}
 .nav-links{display:flex;align-items:center;gap:4px}
 .nav-links a{
@@ -305,24 +299,7 @@ header.nav.scrolled{
 }
 .card:hover{border-color:var(--line-strong);background:var(--glass-2)}
 
-/* welcome messages */
-.welcome-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
-.msg{display:flex;flex-direction:column;gap:18px}
-.msg-head{display:flex;align-items:center;gap:16px}
-.portrait{
-  position:relative;
-  width:74px;height:74px;border-radius:16px;flex:none;overflow:hidden;
-  background:linear-gradient(150deg,var(--teal-deep),#0a1418 60%,var(--crimson));
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Playfair Display';font-style:italic;font-size:1.5rem;color:#fff;
-  border:1px solid var(--line-strong);
-}
-.portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center}
-.msg-head h3{font-family:'Playfair Display';font-size:1.25rem;font-weight:700}
-.msg-head p{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--teal)}
-.msg p.body{color:var(--ink-dim);font-size:.97rem}
-.msg .scrip{font-family:'Playfair Display';font-style:italic;color:var(--ink);border-left:2px solid var(--crimson);padding-left:14px;margin:4px 0}
-/* speakers — portrait + message together */
+/* welcome messages & speakers — portrait + message together */
 .speaker-grid{display:flex;flex-direction:column;gap:26px}
 .speaker{
   overflow:hidden;border-radius:var(--r);
@@ -330,20 +307,14 @@ header.nav.scrolled{
   padding:26px 28px;
 }
 .speaker .photo{
-  float:left;width:clamp(190px,24vw,256px);aspect-ratio:1/1;
+  float:left;width:clamp(190px,24vw,256px);
   margin:4px 30px 14px 0;border-radius:14px;overflow:hidden;position:relative;
   background:
     radial-gradient(80% 80% at 30% 20%, rgba(45,212,191,.25), transparent 60%),
     linear-gradient(160deg,#0c2429,#0a0f14 55%,#1c0a11);
-  display:flex;align-items:flex-end;justify-content:center;
 }
 .speaker .photo img{
-  width:100%;height:100%;object-fit:contain;object-position:center bottom;display:block;
-}
-.speaker .photo .badge{
-  position:absolute;top:12px;left:12px;z-index:1;background:var(--crimson);color:#fff;
-  font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;
-  padding:4px 11px;border-radius:999px;
+  width:100%;height:auto;display:block;
 }
 .speaker h3{font-family:'Playfair Display';font-size:1.6rem;font-weight:700}
 .speaker .role{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--teal);margin-bottom:14px}
@@ -476,19 +447,17 @@ header.nav.scrolled{
 /* ============================================================
    Events
    ============================================================ */
-.events-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.event{display:flex;flex-direction:column;gap:8px}
-.event .ico{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--teal-deep),var(--crimson));display:flex;align-items:center;justify-content:center;color:#fff}
-.event .ico svg{width:22px;height:22px}
-.event h4{font-family:'Playfair Display';font-size:1.15rem;font-weight:700}
-.event p{color:var(--ink-dim);font-size:.9rem}
-.upcoming{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:24px}
-.upcoming .card{display:flex;align-items:center;gap:18px}
+.upcoming{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.upcoming .card{display:flex;align-items:center;gap:18px;transition:border-color .3s var(--ease),transform .3s var(--ease)}
+.upcoming .card:hover{border-color:rgba(45,212,191,.45);transform:translateY(-3px)}
+.upcoming h4{margin-bottom:3px}
+.upcoming .venue{display:inline-flex;align-items:center;gap:6px;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-dim)}
+.upcoming .venue svg{width:12px;height:12px;color:var(--crimson-soft);flex:none}
 .upcoming .date{
-  text-align:center;flex:none;background:var(--glass-2);border:1px solid var(--line);border-radius:12px;padding:10px 16px;
+  text-align:center;flex:none;width:92px;background:var(--glass-2);border:1px solid var(--line);border-radius:12px;padding:12px 8px;
 }
-.upcoming .date b{font-family:'Bebas Neue';font-size:2rem;line-height:.9;color:var(--teal);display:block}
-.upcoming .date span{font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint)}
+.upcoming .date b{font-family:'Bebas Neue';font-size:1.8rem;letter-spacing:.02em;line-height:.9;color:var(--teal);display:block}
+.upcoming .date span{font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint)}
 .upcoming h4{font-family:'Playfair Display';font-size:1.2rem}
 .upcoming p{font-size:.85rem;color:var(--ink-dim)}
 
@@ -520,7 +489,7 @@ header.nav.scrolled{
    Footer
    ============================================================ */
 footer{padding:90px 24px 50px;text-align:center;position:relative;border-top:1px solid var(--line);background:linear-gradient(180deg,transparent,rgba(28,10,17,.6))}
-footer .c2g{font-size:3.4rem;margin-bottom:14px}
+footer .flogo{height:88px;width:auto;display:block;margin:0 auto 14px}
 footer .ftheme{font-family:'Playfair Display';font-style:italic;font-weight:900;font-size:clamp(2.6rem,9vw,5rem);background:linear-gradient(95deg,var(--teal),var(--crimson));-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1}
 footer .fverse{font-family:'Playfair Display';font-style:italic;color:var(--ink-dim);max-width:600px;margin:24px auto 0}
 footer .fverse cite{display:block;font-style:normal;font-family:'Inter';font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--teal);margin-top:10px}
@@ -538,8 +507,8 @@ footer .credit{margin-top:18px;font-size:.72rem;color:var(--ink-faint)}
    Responsive
    ============================================================ */
 @media (max-width:980px){
-  .welcome-grid,.speaker-grid,.rules-grid,.upcoming{grid-template-columns:1fr}
-  .church-grid,.events-grid,.dept-grid{grid-template-columns:repeat(2,1fr)}
+  .speaker-grid,.rules-grid,.upcoming{grid-template-columns:1fr}
+  .church-grid,.dept-grid{grid-template-columns:repeat(2,1fr)}
   .connect-grid{grid-template-columns:repeat(3,1fr)}
   .gauge{display:none}
 }
@@ -548,7 +517,7 @@ footer .credit{margin-top:18px;font-size:.72rem;color:var(--ink-faint)}
   .burger{display:block}
   .nav-cta{display:none}
   section{padding:72px 0}
-  .church-grid,.events-grid,.dept-grid,.connect-grid,.tracklist{grid-template-columns:1fr}
+  .church-grid,.dept-grid,.connect-grid,.tracklist{grid-template-columns:1fr}
   .hero-logos{flex-wrap:wrap;gap:14px}
   .cd-cell{min-width:68px}
   .cd-cell b{font-size:2rem}
@@ -583,7 +552,7 @@ footer .credit{margin-top:18px;font-size:.72rem;color:var(--ink-faint)}
 <!-- ============ NAV ============ -->
 <header class="nav" id="nav">
   <a href="#top" class="nav-brand" aria-label="C2G 2026 — Go Deeper, home">
-    <span class="c2g"><b>C</b><i>2</i><b>G</b></span>
+    <img class="brand-logo" src="assets/img/C2G.png" alt="C2G logo" />
     <small>Go&nbsp;Deeper&nbsp;·&nbsp;2026</small>
   </a>
   <nav class="nav-links" aria-label="Section navigation">
@@ -702,30 +671,26 @@ footer .credit{margin-top:18px;font-size:.72rem;color:var(--ink-faint)}
       <p class="lead">From the desk of our leadership — an invitation to come hungry, stay surrendered, and go deeper than ever before.</p>
     </div>
 
-    <div class="welcome-grid">
-      <article class="card msg reveal">
-        <div class="msg-head">
-          <div class="portrait">SP<img src="assets/img/sam-ponusamy.png" alt="Rev. Sam Ponusamy" onerror="this.remove()" /></div>
-          <div>
-            <h3>Rev. Sam Ponusamy</h3>
-            <p>General Superintendent · UPC Malaysia</p>
-          </div>
+    <div class="speaker-grid">
+      <article class="speaker reveal">
+        <div class="photo">
+          <img src="assets/img/sam-ponusamy.png" alt="Rev. Sam Ponusamy" loading="lazy" decoding="async" />
         </div>
-        <p class="body">Greetings! On behalf of our UPC leadership team, it is a profound joy to welcome all of you to our annual camp meeting 2026. It is wonderful to see familiar faces and to extend a special welcome to those joining us for the first time. In line with this year&rsquo;s theme, <em>&ldquo;Go Deeper,&rdquo;</em> let us press past the shallows and seek God with all of our hearts, prioritising His presence and His knowledge above all else.</p>
+        <h3>Rev. Sam Ponusamy</h3>
+        <p class="role">General Superintendent · UPC Malaysia</p>
+        <p class="sp-msg">Greetings! On behalf of our UPC leadership team, it is a profound joy to welcome all of you to our annual camp meeting 2026. It is wonderful to see familiar faces and to extend a special welcome to those joining us for the first time. In line with this year&rsquo;s theme, <em>&ldquo;Go Deeper,&rdquo;</em> let us press past the shallows and seek God with all of our hearts, prioritising His presence and His knowledge above all else.</p>
         <p class="scrip">&ldquo;You will seek Me and find Me, when you seek Me with all your heart.&rdquo; — Jeremiah 29:13</p>
-        <p class="body">We recognise and appreciate that many have made much sacrifice — organising, fasting and praying — to gather for this special time of fellowship and spiritual renewal. This gathering is more than a social event; it is an opportunity to deepen our relationship with God. I encourage you to be open to the messages God has for you, and may you leave this place with a renewed dedication and a fresh outpouring of His Spirit.</p>
+        <p class="sp-msg">We recognise and appreciate that many have made much sacrifice — organising, fasting and praying — to gather for this special time of fellowship and spiritual renewal. This gathering is more than a social event; it is an opportunity to deepen our relationship with God. I encourage you to be open to the messages God has for you, and may you leave this place with a renewed dedication and a fresh outpouring of His Spirit.</p>
       </article>
 
-      <article class="card msg reveal">
-        <div class="msg-head">
-          <div class="portrait">JC<img src="assets/img/joel-charles.png" alt="Rev. Joel Charles" onerror="this.remove()" /></div>
-          <div>
-            <h3>Rev. Joel Charles</h3>
-            <p>District Superintendent · UPCWM</p>
-          </div>
+      <article class="speaker reveal">
+        <div class="photo">
+          <img src="assets/img/joel-charles.png" alt="Rev. Joel Charles" loading="lazy" decoding="async" />
         </div>
-        <p class="body">Peace and grace to all! We count it a joy and privilege to gather once again from different churches to worship King Jesus in Spirit and in Truth, here in Kampar. Taking time off from the busyness of our daily schedules offers us a moment to pause, reflect and receive fresh lessons from the Lord.</p>
-        <p class="body">We live in a time when many voices vie for our attention. More than ever, we must stay grounded in God&rsquo;s Word — prayerful, humble, teachable and unoffendable. A meeting such as this gives us the opportunity to recalibrate our walk and sharpen our focus. We thank Rev. Joel Bean and Rev. Lonnie Vestal for taking the time to minister the Word. I pray this will be a life-changing experience as we answer the call to <em>go deeper</em>.</p>
+        <h3>Rev. Joel Charles</h3>
+        <p class="role">District Superintendent · UPCWM</p>
+        <p class="sp-msg">Peace and grace to all! We count it a joy and privilege to gather once again from different churches to worship King Jesus in Spirit and in Truth, here in Kampar. Taking time off from the busyness of our daily schedules offers us a moment to pause, reflect and receive fresh lessons from the Lord.</p>
+        <p class="sp-msg">We live in a time when many voices vie for our attention. More than ever, we must stay grounded in God&rsquo;s Word — prayerful, humble, teachable and unoffendable. A meeting such as this gives us the opportunity to recalibrate our walk and sharpen our focus. We thank Rev. Joel Bean and Rev. Lonnie Vestal for taking the time to minister the Word. I pray this will be a life-changing experience as we answer the call to <em>go deeper</em>.</p>
       </article>
     </div>
   </div>
@@ -744,20 +709,18 @@ footer .credit{margin-top:18px;font-size:.72rem;color:var(--ink-faint)}
     <div class="speaker-grid">
       <article class="speaker reveal">
         <div class="photo">
-          <span class="badge">Guest Speaker</span>
           <img src="assets/img/joel-bean.png" alt="Rev. Joel Bean" loading="lazy" decoding="async" />
         </div>
         <h3>Rev. Joel Bean</h3>
-        <p class="role">Guest Speaker</p>
+        <p class="role">Pastor @ The Sanctuary, USA</p>
       </article>
 
       <article class="speaker reveal">
         <div class="photo">
-          <span class="badge">Guest Speaker</span>
           <img src="assets/img/lonnie-vestal.png" alt="Rev. Lonnie Vestal" loading="lazy" decoding="async" />
         </div>
         <h3>Rev. Lonnie Vestal</h3>
-        <p class="role">Guest Speaker · A Word of Welcome</p>
+        <p class="role">Missionary to Malaysia</p>
         <p class="sp-msg">Dear Brothers and Sisters, we come once again to this wonderful time of spiritual refreshing. The theme for this year&rsquo;s Called to Greatness is <em>&ldquo;Deeper.&rdquo;</em> The Apostle Paul greatly desired that his saints would deepen their knowledge of Jesus Christ when he wrote:</p>
         <p class="scrip">&ldquo;That Christ may dwell in your hearts by faith; that ye, being rooted and grounded in love, may be able to comprehend with all saints what is the breadth, and length, and depth, and height; and to know the love of Christ, which passeth knowledge, that ye might be filled with all the fulness of God.&rdquo; — Ephesians 3:17&ndash;19</p>
         <p class="sp-msg">In just two verses, Paul describes close fellowship with Jesus four different ways: &ldquo;Christ dwelling in your heart,&rdquo; &ldquo;being rooted and grounded in love,&rdquo; &ldquo;knowing the love of Christ,&rdquo; and &ldquo;filled with all the fulness of God.&rdquo; If Paul were to condense his instructions into one statement, he might have simply said, <em>&ldquo;go deeper.&rdquo;</em></p>
@@ -1064,14 +1027,14 @@ footer .credit{margin-top:18px;font-size:.72rem;color:var(--ink-faint)}
         <div class="date"><b>8</b><span>Aug</span></div>
         <div>
           <h4>WM District Conference</h4>
-          <p>Held at HQ.</p>
+          <span class="venue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>UPC HQ</span>
         </div>
       </article>
       <article class="card reveal">
         <div class="date"><b>27&ndash;29</b><span>Aug</span></div>
         <div>
           <h4>General Conference</h4>
-          <p>In Kuching, Sarawak.</p>
+          <span class="venue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Kuching, Sarawak</span>
         </div>
       </article>
       <article class="card reveal">
@@ -1092,14 +1055,16 @@ footer .credit{margin-top:18px;font-size:.72rem;color:var(--ink-faint)}
         <div class="date"><b>9&ndash;10</b><span>Oct</span></div>
         <div>
           <h4>GATS Training Weekend</h4>
-          <p>Global Association of Theological Studies training, at HQ.</p>
+          <p>Global Association of Theological Studies training.</p>
+          <span class="venue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>UPC HQ</span>
         </div>
       </article>
       <article class="card reveal">
         <div class="date"><b>24</b><span>Oct</span></div>
         <div>
           <h4>4th WMD Minister&rsquo;s Meeting</h4>
-          <p>For ministers of the district, at HQ.</p>
+          <p>For ministers of the district.</p>
+          <span class="venue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>UPC HQ</span>
         </div>
       </article>
       <article class="card reveal">
@@ -1217,7 +1182,7 @@ footer .credit{margin-top:18px;font-size:.72rem;color:var(--ink-faint)}
 <!-- ============ FOOTER ============ -->
 <footer>
   <div class="wrap">
-    <span class="c2g" style="justify-content:center"><b>C</b><i>2</i><b>G</b></span>
+    <img class="flogo" src="assets/img/C2G.png" alt="C2G logo" loading="lazy" decoding="async" />
     <div class="ftheme">Go Deeper</div>
     <p class="fverse">
       &ldquo;Afterward he measured a thousand; and it was a river that I could not pass over: for the waters were risen, waters to swim in, a river that could not be passed over.&rdquo;
