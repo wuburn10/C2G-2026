@@ -4,14 +4,14 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Go Deeper · Called to Greatness 2026 · UPC West Malaysia Family Camp</title>
-<meta name="description" content="Called to Greatness 2026 — Go Deeper. UPC West Malaysia District Annual Family Camp. 30 July – 2 August 2026, Grand Kampar Hotel. Speakers: Rev. Joel Bean & Rev. Lonnie Vestal." />
+<meta name="description" content="Called to Greatness 2026 — Go Deeper. UPC West Malaysia Annual Family Camp 2026. 30 July – 2 August 2026, Grand Kampar Hotel. Speakers: Rev. Joel Bean & Rev. Lonnie Vestal." />
 <meta name="theme-color" content="#07181d" />
 <link rel="icon" type="image/png" href="assets/img/C2G.png" />
 <link rel="apple-touch-icon" href="assets/img/C2G.png" />
 
 <!-- Open Graph -->
 <meta property="og:title" content="Go Deeper · Called to Greatness 2026" />
-<meta property="og:description" content="UPC West Malaysia District Annual Family Camp · 30 July – 2 August 2026 · Grand Kampar Hotel" />
+<meta property="og:description" content="UPC West Malaysia Annual Family Camp 2026 · 30 July – 2 August 2026 · Grand Kampar Hotel" />
 <meta property="og:type" content="website" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -218,11 +218,13 @@ header.nav.scrolled{
 .hero .theme{
   display:block;
   font-family:'Playfair Display',serif;font-style:italic;font-weight:900;
-  font-size:clamp(4.2rem,18vw,11rem);line-height:.92;letter-spacing:-.02em;
+  font-size:clamp(4.2rem,18vw,11rem);line-height:1.1;letter-spacing:-.02em;
   background:linear-gradient(95deg,var(--teal) 0%,#eafffb 32%,var(--crimson-soft) 70%,var(--crimson) 100%);
+  background-repeat:no-repeat;background-size:112% 100%;background-position:-2% 0;
   -webkit-background-clip:text;background-clip:text;color:transparent;
-  text-shadow:0 14px 60px rgba(226,58,78,.18);
-  margin:4px 0 2px;
+  filter:drop-shadow(0 14px 60px rgba(226,58,78,.18));
+  margin:-8px 0 -14px;
+  padding-bottom:.08em;
 }
 .hero .subtitle{
   font-size:clamp(.82rem,2.4vw,1.05rem);letter-spacing:.16em;text-transform:uppercase;
@@ -607,7 +609,7 @@ footer .credit{margin-top:18px;font-size:.72rem;color:var(--ink-faint)}
     <span class="pretitle reveal">Called to Greatness · 2026</span>
     <span class="theme reveal">Go Deeper</span>
   </h1>
-  <p class="subtitle reveal">UPC West Malaysia District Annual Family Camp</p>
+  <p class="subtitle reveal">UPC West Malaysia Annual Family Camp 2026</p>
 
   <p class="verse reveal">
     &ldquo;Launch out into the deep, and let down your nets for a draught.&rdquo;
@@ -688,7 +690,7 @@ footer .credit{margin-top:18px;font-size:.72rem;color:var(--ink-faint)}
           <img src="assets/img/joel-charles.png" alt="Rev. Joel Charles" loading="lazy" decoding="async" />
         </div>
         <h3>Rev. Joel Charles</h3>
-        <p class="role">District Superintendent · UPCWM</p>
+        <p class="role">District Superintendent · UPC WM</p>
         <p class="sp-msg">Peace and grace to all! We count it a joy and privilege to gather once again from different churches to worship King Jesus in Spirit and in Truth, here in Kampar. Taking time off from the busyness of our daily schedules offers us a moment to pause, reflect and receive fresh lessons from the Lord.</p>
         <p class="sp-msg">We live in a time when many voices vie for our attention. More than ever, we must stay grounded in God&rsquo;s Word — prayerful, humble, teachable and unoffendable. A meeting such as this gives us the opportunity to recalibrate our walk and sharpen our focus. We thank Rev. Joel Bean and Rev. Lonnie Vestal for taking the time to minister the Word. I pray this will be a life-changing experience as we answer the call to <em>go deeper</em>.</p>
       </article>
@@ -1189,7 +1191,7 @@ footer .credit{margin-top:18px;font-size:.72rem;color:var(--ink-faint)}
       <cite>Ezekiel 47:5</cite>
     </p>
     <p class="fmeta">
-      <strong>Called to Greatness 2026</strong> · UPC West Malaysia District Annual Family Camp<br/>
+      <strong>Called to Greatness 2026</strong> · UPC West Malaysia Annual Family Camp 2026<br/>
       30 July – 2 August 2026 · Grand Kampar Hotel, Perak
     </p>
     <p class="credit">A Christian event by the United Pentecostal Church, West Malaysia.</p>
@@ -1308,8 +1310,35 @@ footer .credit{margin-top:18px;font-size:.72rem;color:var(--ink-faint)}
     });
   }
   var userPicked=false;
+  /* After a tab switch, bring the tab row (and the panel under it) into view.
+     Own rAF tween rather than behavior:'smooth' — it re-aims every frame, so the
+     reveal animations resizing the page mid-flight can't leave us off-target. */
+  function scrollToTabs(){
+    var row=document.querySelector('.day-tabs'); if(!row) return;
+    var nav=document.querySelector('header.nav');
+    var pad=(nav?nav.offsetHeight:0)+16;
+    function gap(){ return row.getBoundingClientRect().top-pad; }
+    if(Math.abs(gap())<8) return;                /* already parked under the nav */
+    if(reduceMotion || !window.requestAnimationFrame){
+      window.scrollTo(0,Math.max(window.pageYOffset+gap(),0)); return;
+    }
+    var t0=Date.now(), dur=600, ePrev=0;
+    requestAnimationFrame(function step(){
+      var p=Math.min((Date.now()-t0)/dur,1);
+      var e=p<.5 ? 4*p*p*p : 1-Math.pow(-2*p+2,3)/2;   /* easeInOutCubic */
+      /* gap() is the distance still to go, so advance by this frame's share of it */
+      var share=p>=1 ? 1 : (e-ePrev)/(1-ePrev);
+      ePrev=e;
+      window.scrollTo(0,Math.max(window.pageYOffset+gap()*share,0));
+      if(p<1) requestAnimationFrame(step);
+    });
+  }
   tabs.forEach(function(tab){
-    tab.addEventListener('click',function(){ userPicked=true; activateDay(tab.getAttribute('data-day')); });
+    tab.addEventListener('click',function(){
+      userPicked=true;
+      activateDay(tab.getAttribute('data-day'));
+      scrollToTabs();
+    });
   });
 
   /* allow ?now=2026-07-31T09:15:00+08:00 to preview the live state on any date */
