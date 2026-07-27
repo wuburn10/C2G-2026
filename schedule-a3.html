@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>C2G 2026 — Camp Schedule (A3)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,700;1,900&family=Inter:wght@400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet" />
+<style>
+/* ============================================================
+   C2G 2026 — GO DEEPER · A3 Camp Schedule Poster (portrait)
+   297mm × 420mm — print with margins set to None / actual size
+   ============================================================ */
+@page{ size:A3 portrait; margin:0; }
+
+:root{
+  --bg:#050d10;
+  --abyss-top:#0c2b30;
+  --abyss-mid:#07181d;
+  --abyss-bottom:#1c0a11;
+  --ink:#f4f1ec;
+  --ink-dim:#a7b6b7;
+  --ink-faint:#7d8f91;
+  --teal:#2dd4bf;
+  --teal-deep:#0e7d76;
+  --crimson:#e23a4e;
+  --crimson-soft:#ff5d6c;
+  --gold:#e6b45a;
+  --line:rgba(255,255,255,.14);
+  --line-strong:rgba(255,255,255,.28);
+  --glass:rgba(255,255,255,.045);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:297mm;height:420mm}
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(130% 55% at 50% -8%, rgba(45,212,191,.26), transparent 62%),
+    linear-gradient(180deg, var(--abyss-top) 0%, var(--abyss-mid) 36%, #0a0f14 66%, var(--abyss-bottom) 100%);
+  background-color:var(--bg);
+  -webkit-print-color-adjust:exact; print-color-adjust:exact;
+}
+@media print{ body{overflow:hidden} }
+
+.poster{
+  width:297mm;height:420mm;
+  padding:14mm 12mm 12mm;
+  display:flex;flex-direction:column;
+  position:relative;
+}
+
+/* light rays, like the site backdrop */
+.poster::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:conic-gradient(from 180deg at 50% -5%,
+    transparent 0deg, rgba(45,212,191,.10) 12deg, transparent 24deg,
+    rgba(45,212,191,.07) 40deg, transparent 60deg, rgba(255,255,255,.05) 80deg,
+    transparent 100deg, rgba(45,212,191,.08) 130deg, transparent 160deg);
+  -webkit-mask-image:linear-gradient(180deg,#000,transparent 50%);
+          mask-image:linear-gradient(180deg,#000,transparent 50%);
+  opacity:.7;
+}
+
+/* ---------- Header ---------- */
+header{position:relative;z-index:1;text-align:center;margin-bottom:9mm}
+.kicker{
+  font-size:11.5pt;letter-spacing:.34em;text-transform:uppercase;
+  color:var(--teal);font-weight:600;
+}
+/* Matches the web booklet hero: Playfair italic 900, teal → white → crimson */
+h1{
+  font-family:'Playfair Display',serif;font-style:italic;font-weight:900;
+  font-size:78pt;line-height:1.06;letter-spacing:-.02em;
+  margin:1mm 0 2mm;padding-bottom:.08em;
+  background:linear-gradient(95deg,var(--teal) 0%,#eafffb 32%,var(--crimson-soft) 70%,var(--crimson) 100%);
+  background-repeat:no-repeat;background-size:112% 100%;background-position:-2% 0;
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 6mm 18mm rgba(226,58,78,.18));
+}
+.meta{
+  font-size:13pt;color:var(--ink-dim);font-weight:500;letter-spacing:.04em;
+}
+.meta b{color:var(--ink);font-weight:600}
+.meta .sep{margin:0 2.5mm;color:var(--ink-faint)}
+.addr{font-size:10pt;color:var(--ink-faint);margin-top:1.5mm;letter-spacing:.03em}
+
+/* ---------- Table ---------- */
+.grid{position:relative;z-index:1;flex:1;display:flex}
+table{
+  width:100%;border-collapse:separate;border-spacing:0;
+  border:1.5px solid var(--line-strong);border-radius:4mm;overflow:hidden;
+  table-layout:fixed;
+}
+col.c-time{width:15%}
+
+/* Vertical rules are drawn as border-LEFT, not border-right: the first cell of
+   every row is always the time column, whereas rowspans make the last cell of a
+   row vary (a :last-child rule drops dividers beside merged columns). */
+th,td{
+  border-left:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  vertical-align:middle;text-align:center;
+  padding:2mm 2.5mm;
+}
+th:first-child,td:first-child{border-left:none}
+tr:last-child td{border-bottom:none}
+
+thead th{
+  background:rgba(45,212,191,.10);
+  border-bottom:1.5px solid var(--line-strong);
+  padding:3.2mm 2mm;
+}
+thead .day{
+  font-family:'Bebas Neue',sans-serif;font-size:20pt;letter-spacing:.08em;
+  display:block;line-height:1;
+}
+thead .date{
+  display:block;font-size:9.5pt;color:var(--ink-dim);font-weight:500;
+  letter-spacing:.12em;text-transform:uppercase;margin-top:1.2mm;
+}
+thead th.t-corner{background:transparent}
+
+td.time{
+  background:rgba(255,255,255,.04);
+  /* inset shadow, not a border, so it can't shift the fixed column widths */
+  box-shadow:inset -1px 0 0 var(--line-strong);
+  font-weight:700;font-size:11pt;letter-spacing:.05em;color:var(--ink-dim);
+  line-height:1.35;
+}
+
+td .ev{font-weight:600;font-size:13pt;line-height:1.25;display:block}
+td .sub{display:block;font-size:9.5pt;color:var(--ink-dim);line-height:1.4;margin-top:1mm}
+td .sub .who{color:var(--gold);font-weight:600}
+td.empty{background:rgba(0,0,0,.14)}
+
+/* highlighted service rows */
+td.major{background:rgba(226,58,78,.13)}
+td.major .ev{color:var(--crimson-soft);font-size:13.5pt}
+/* teal accent cells (sessions) */
+td.session{background:rgba(45,212,191,.08)}
+td.session .ev{color:var(--teal)}
+
+/* tall merged cells (Thu check-in / Sun close) */
+td.span{
+  background:linear-gradient(180deg, rgba(45,212,191,.10), rgba(226,58,78,.10));
+  padding:4mm 3mm;
+}
+td.span .ev{font-family:'Playfair Display',serif;font-style:italic;font-size:15.5pt;font-weight:700}
+td.span .sub{font-size:10pt;margin-top:2mm}
+
+/* ---------- Footer ---------- */
+footer{
+  position:relative;z-index:1;
+  margin-top:5mm;display:flex;justify-content:space-between;align-items:center;
+  font-size:10pt;color:var(--ink-faint);letter-spacing:.06em;
+}
+footer .fx{display:flex;align-items:center;gap:2.5mm}
+footer .fx::before{content:"";width:8mm;height:1px;background:var(--teal);opacity:.6}
+footer .fx.r::before{display:none}
+footer .fx.r::after{content:"";width:8mm;height:1px;background:var(--crimson-soft);opacity:.6}
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <header>
+    <div class="kicker">Called to Greatness 2026 · Camp Schedule</div>
+    <h1>Go Deeper</h1>
+    <div class="meta"><b>30 July – 2 August 2026</b><span class="sep">·</span>Grand Kampar Hotel, Kampar, Perak</div>
+    <div class="addr">UPC West Malaysia Annual Family Camp</div>
+  </header>
+
+  <div class="grid">
+    <table>
+      <colgroup>
+        <col class="c-time" /><col /><col /><col /><col />
+      </colgroup>
+      <thead>
+        <tr>
+          <th class="t-corner"></th>
+          <th><span class="day">Thursday</span><span class="date">Day 1 · 30 July</span></th>
+          <th><span class="day">Friday</span><span class="date">Day 2 · 31 July</span></th>
+          <th><span class="day">Saturday</span><span class="date">Day 3 · 1 Aug</span></th>
+          <th><span class="day">Sunday</span><span class="date">Day 4 · 2 Aug</span></th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr>
+          <td class="time">7.00AM –<br>8.00AM</td>
+          <td class="span" rowspan="6">
+            <span class="ev">Arrival &amp; Check-In</span>
+            <span class="sub">Check-in opens at <b>3:00 PM</b><br><br>
+            Collect your room keys at the lobby and settle in before dinner.</span>
+          </td>
+          <td><span class="ev">Morning Prayer</span></td>
+          <td><span class="ev">Morning Prayer</span></td>
+          <td><span class="ev">Morning Prayer</span></td>
+        </tr>
+
+        <tr>
+          <td class="time">8.00AM –<br>9.00AM</td>
+          <td><span class="ev">Breakfast</span></td>
+          <td><span class="ev">Breakfast</span></td>
+          <td><span class="ev">Breakfast</span></td>
+        </tr>
+
+        <tr>
+          <td class="time">9.00AM –<br>9.45AM</td>
+          <td><span class="ev">Morning Service</span></td>
+          <td><span class="ev">Morning Service</span></td>
+          <td><span class="ev">Morning Service</span></td>
+        </tr>
+
+        <tr>
+          <td class="time">9.45AM –<br>10.45AM</td>
+          <td class="session"><span class="ev">Day Session 1</span><span class="sub"><span class="who">Rev. Joel Bean</span></span></td>
+          <td class="session"><span class="ev">Day Session 3</span><span class="sub"><span class="who">Rev. Lonnie Vestal</span></span></td>
+          <td class="session" rowspan="2"><span class="ev">Closing Sessions</span>
+            <span class="sub">Closing Messages — <span class="who">Rev. Joel Bean &amp; Rev. Lonnie Vestal</span><br>
+            Closing Address &amp; Holy Communion — <span class="who">Rev. Joel Charles</span><br><br>
+            11:00 AM · Group Photo</span></td>
+        </tr>
+
+        <tr>
+          <td class="time">11.00AM –<br>12.30PM</td>
+          <td class="session"><span class="ev">Day Session 2 · Breakout</span>
+            <span class="sub">Adults — Treasure Hall · <span class="who">Rev. Lonnie Vestal</span><br>
+            Youths — Pewter 1 · <span class="who">Rev. Joel Bean</span><br>
+            Kids — Pewter Hall</span></td>
+          <td class="session"><span class="ev">Day Session 4 · Breakout</span>
+            <span class="sub">Men — <span class="who">Rev. Bean, Rev. Vestal &amp; Rev. Dixon</span><br>
+            Ladies — <span class="who">Sis. Bean, Sis. Vestal &amp; Sis. Dixon</span><br>
+            Kids — Pewter Hall</span></td>
+        </tr>
+
+        <tr>
+          <td class="time">12.30PM –<br>1.30PM</td>
+          <td><span class="ev">Lunch</span></td>
+          <td><span class="ev">Lunch</span><span class="sub">In House</span></td>
+          <td rowspan="6" class="span">
+            <span class="ev">Until We Meet Again</span>
+            <span class="sub"><b>Checkout by 12:00 PM</b><br><br>
+            Lunch · 12:30 – 1:30 PM<br><br>
+            Thank you for going deeper with us.<br>Safe travels home,<br>God bless!</span>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="time">3.00PM –<br>5.00PM</td>
+          <td><span class="ev">Check-In</span><span class="sub">From 3:00 PM</span></td>
+          <td><span class="ev">Recreational Activities</span></td>
+          <td><span class="ev">Recreational Activities</span></td>
+        </tr>
+
+        <tr>
+          <td class="time">6.00PM –<br>7.00PM</td>
+          <td><span class="ev">Dinner</span></td>
+          <td><span class="ev">Dinner</span></td>
+          <td><span class="ev">Dinner</span></td>
+        </tr>
+
+        <tr>
+          <td class="time">7.30PM –<br>8.00PM</td>
+          <td><span class="ev">Pre-Service Prayer</span></td>
+          <td><span class="ev">Pre-Service Prayer</span></td>
+          <td><span class="ev">Pre-Service Prayer</span></td>
+        </tr>
+
+        <tr>
+          <td class="time">8.00PM –<br>10.30PM</td>
+          <td class="major"><span class="ev">Opening Service</span>
+            <span class="sub">Opening Address — <span class="who">Rev. Sam Ponusamy</span><br>
+            Sermon — <span class="who">Rev. Lonnie Vestal</span></span></td>
+          <td class="major"><span class="ev">Evening Service</span>
+            <span class="sub">Sermon — <span class="who">Rev. Joel Bean</span></span></td>
+          <td class="major"><span class="ev">Evening Service</span>
+            <span class="sub">Sermon — <span class="who">Rev. Joel Bean</span></span></td>
+        </tr>
+
+        <tr>
+          <td class="time">10.30PM</td>
+          <td><span class="ev">Dismiss</span></td>
+          <td><span class="ev">Dismiss</span></td>
+          <td><span class="ev">Dismiss</span></td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+  <footer>
+    <span class="fx">United Pentecostal Church of West Malaysia</span>
+    <span class="fx r">Called to Greatness 2026 · Go Deeper</span>
+  </footer>
+
+</div>
+</body>
+</html>
