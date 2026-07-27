@@ -40,6 +40,9 @@ body{
     radial-gradient(130% 55% at 50% -8%, rgba(45,212,191,.26), transparent 62%),
     linear-gradient(180deg, var(--abyss-top) 0%, var(--abyss-mid) 36%, #0a0f14 66%, var(--abyss-bottom) 100%);
   background-color:var(--bg);
+  /* body's background propagates to the canvas, which is taller than the 420mm
+     page — without this it tiles and the teal top edge reappears below the footer */
+  background-repeat:no-repeat;
   -webkit-print-color-adjust:exact; print-color-adjust:exact;
 }
 @media print{ body{overflow:hidden} }
@@ -189,7 +192,7 @@ footer .fx.r::after{content:"";width:8mm;height:1px;background:var(--crimson-sof
       <tbody>
 
         <tr>
-          <td class="time">7.00AM –<br>8.00AM</td>
+          <td class="time">7:00 AM</td>
           <td class="span" rowspan="6">
             <span class="ev">Arrival &amp; Check-In</span>
             <span class="sub">Check-in opens at <b>3:00 PM</b><br><br>
@@ -201,21 +204,21 @@ footer .fx.r::after{content:"";width:8mm;height:1px;background:var(--crimson-sof
         </tr>
 
         <tr>
-          <td class="time">8.00AM –<br>9.00AM</td>
+          <td class="time">8:00 AM</td>
           <td><span class="ev">Breakfast</span></td>
           <td><span class="ev">Breakfast</span></td>
           <td><span class="ev">Breakfast</span></td>
         </tr>
 
         <tr>
-          <td class="time">9.00AM –<br>9.45AM</td>
+          <td class="time">9:00 AM</td>
           <td><span class="ev">Morning Service</span></td>
           <td><span class="ev">Morning Service</span></td>
           <td><span class="ev">Morning Service</span></td>
         </tr>
 
         <tr>
-          <td class="time">9.45AM –<br>10.45AM</td>
+          <td class="time">9:45 AM</td>
           <td class="session"><span class="ev">Day Session 1</span><span class="sub"><span class="who">Rev. Joel Bean</span></span></td>
           <td class="session"><span class="ev">Day Session 3</span><span class="sub"><span class="who">Rev. Lonnie Vestal</span></span></td>
           <td class="session" rowspan="2"><span class="ev">Closing Sessions</span>
@@ -225,7 +228,7 @@ footer .fx.r::after{content:"";width:8mm;height:1px;background:var(--crimson-sof
         </tr>
 
         <tr>
-          <td class="time">11.00AM –<br>12.30PM</td>
+          <td class="time">11:00 AM</td>
           <td class="session"><span class="ev">Day Session 2 · Breakout</span>
             <span class="sub">Adults — Treasure Hall · <span class="who">Rev. Lonnie Vestal</span><br>
             Youths — Pewter 1 · <span class="who">Rev. Joel Bean</span><br>
@@ -237,7 +240,7 @@ footer .fx.r::after{content:"";width:8mm;height:1px;background:var(--crimson-sof
         </tr>
 
         <tr>
-          <td class="time">12.30PM –<br>1.30PM</td>
+          <td class="time">12:30 PM</td>
           <td><span class="ev">Lunch</span></td>
           <td><span class="ev">Lunch</span><span class="sub">In House</span></td>
           <td rowspan="6" class="span">
@@ -249,28 +252,28 @@ footer .fx.r::after{content:"";width:8mm;height:1px;background:var(--crimson-sof
         </tr>
 
         <tr>
-          <td class="time">3.00PM –<br>5.00PM</td>
+          <td class="time">3:00 PM</td>
           <td><span class="ev">Check-In</span><span class="sub">From 3:00 PM</span></td>
           <td><span class="ev">Recreational Activities</span></td>
           <td><span class="ev">Recreational Activities</span></td>
         </tr>
 
         <tr>
-          <td class="time">6.00PM –<br>7.00PM</td>
+          <td class="time">6:00 PM</td>
           <td><span class="ev">Dinner</span></td>
           <td><span class="ev">Dinner</span></td>
           <td><span class="ev">Dinner</span></td>
         </tr>
 
         <tr>
-          <td class="time">7.30PM –<br>8.00PM</td>
+          <td class="time">7:30 PM</td>
           <td><span class="ev">Pre-Service Prayer</span></td>
           <td><span class="ev">Pre-Service Prayer</span></td>
           <td><span class="ev">Pre-Service Prayer</span></td>
         </tr>
 
         <tr>
-          <td class="time">8.00PM –<br>10.30PM</td>
+          <td class="time">8:00 PM</td>
           <td class="major"><span class="ev">Opening Service</span>
             <span class="sub">Opening Address — <span class="who">Rev. Sam Ponusamy</span><br>
             Sermon — <span class="who">Rev. Lonnie Vestal</span></span></td>
@@ -281,7 +284,7 @@ footer .fx.r::after{content:"";width:8mm;height:1px;background:var(--crimson-sof
         </tr>
 
         <tr>
-          <td class="time">10.30PM</td>
+          <td class="time">10:30 PM</td>
           <td><span class="ev">Dismiss</span></td>
           <td><span class="ev">Dismiss</span></td>
           <td><span class="ev">Dismiss</span></td>
