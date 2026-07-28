@@ -136,6 +136,8 @@ td.time{
 td .ev{font-weight:600;font-size:13pt;line-height:1.25;display:block}
 td .sub{display:block;font-size:9.5pt;color:var(--ink-dim);line-height:1.4;margin-top:1mm}
 td .sub .who{color:var(--gold);font-weight:600}
+/* kids venue sits apart from the session/sermon lines above it */
+td .sub .kids{display:block;margin-top:3mm}
 td.empty{background:rgba(0,0,0,.14)}
 
 /* highlighted service rows */
@@ -219,8 +221,10 @@ footer .fx.r::after{content:"";width:8mm;height:1px;background:var(--crimson-sof
 
         <tr>
           <td class="time">9:45 AM</td>
-          <td class="session"><span class="ev">Day Session 1</span><span class="sub"><span class="who">Rev. Joel Bean</span></span></td>
-          <td class="session"><span class="ev">Day Session 3</span><span class="sub"><span class="who">Rev. Lonnie Vestal</span></span></td>
+          <td class="session"><span class="ev">Day Session 1</span><span class="sub"><span class="who">Rev. Joel Bean</span>
+            <span class="kids">Kids — Pewter 2</span></span></td>
+          <td class="session"><span class="ev">Day Session 3</span><span class="sub"><span class="who">Rev. Lonnie Vestal</span>
+            <span class="kids">Kids — Pewter 2</span></span></td>
           <td class="session" rowspan="2"><span class="ev">Closing Sessions</span>
             <span class="sub">Closing Messages — <span class="who">Rev. Joel Bean &amp; Rev. Lonnie Vestal</span><br>
             Closing Address &amp; Holy Communion — <span class="who">Pastor Joel Charles</span><br><br>
@@ -278,10 +282,12 @@ footer .fx.r::after{content:"";width:8mm;height:1px;background:var(--crimson-sof
           <td class="major"><span class="ev">Opening Service</span>
             <span class="sub">Opening Address — <span class="who">Rev. Sam Ponusamy</span><br>
             Worship<br>
-            Sermon — <span class="who">Rev. Lonnie Vestal</span></span></td>
+            Sermon — <span class="who">Rev. Lonnie Vestal</span>
+            <span class="kids">Kids — Pewter 2</span></span></td>
           <td class="major"><span class="ev">Evening Service</span>
             <span class="sub">Worship<br>
-            Sermon — <span class="who">Rev. Joel Bean</span></span></td>
+            Sermon — <span class="who">Rev. Joel Bean</span>
+            <span class="kids">Kids — Pewter 2</span></span></td>
           <td class="major"><span class="ev">Evening Service</span>
             <span class="sub">Worship<br>
             Sermon — <span class="who">Rev. Joel Bean</span></span></td>

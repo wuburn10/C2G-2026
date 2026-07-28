@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>C2G 2026 — Participant Cards (A4, 8-up × 4 pages)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+/* ============================================================
+   C2G 2026 — GO DEEPER · Participant name cards
+   4 × A4 portrait, 8-up (2 × 4) = 32 cards: 25 named, 7 blank spares.
+   MONOCHROME by design — laid out for black & white laser print:
+   ink on white, hairline rules, no flood fills or gradients.
+   Print at actual size with margins set to None.
+   ============================================================ */
+@page{ size:A4 portrait; margin:0; }
+
+:root{
+  --ink:#0d0d0d;
+  --ink-mid:#3a3a3a;
+  --ink-dim:#5c5c5c;
+  --ink-faint:#8a8a8a;
+  --rule:#b0b0b0;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:210mm}
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  color:var(--ink);
+  background:#fff;
+  -webkit-print-color-adjust:exact; print-color-adjust:exact;
+}
+
+.sheet{
+  width:210mm;height:297mm;
+  display:grid;
+  /* fr, not fixed mm: the sheet is border-box, so the .3mm top/left rules eat
+     into the content box — fixed 105mm columns would push the outer edge off. */
+  grid-template-columns:repeat(2,1fr);
+  grid-template-rows:repeat(4,1fr);
+  page-break-after:always;break-after:page;
+  /* the sheet supplies the top + left edges; every card supplies its own right +
+     bottom. Adjacent cards therefore share ONE line — cut straight down it, no
+     trim margin needed. Borders are drawn inside the 210 × 297mm box. */
+  border-top:.3mm solid var(--rule);
+  border-left:.3mm solid var(--rule);
+}
+.sheet:last-child{page-break-after:auto;break-after:auto}
+
+/* ---------- Card ---------- */
+.card{
+  position:relative;overflow:hidden;
+  padding:6mm 8mm;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;
+  background:#fff;
+  /* the cut line IS the card edge — shared with the neighbouring card */
+  border-right:.3mm solid var(--rule);
+  border-bottom:.3mm solid var(--rule);
+}
+
+/* flex-shrink:0 — the card is a column flex box, so once the stack gets tall the
+   default shrink squashes the fixed-height .rule to a sliver and its hairlines
+   disappear. Nothing here should ever be compressed. */
+.card > *{position:relative;z-index:1;flex:none}
+
+/* ---------- Name ---------- */
+.kicker{
+  font-size:7.2pt;letter-spacing:.32em;text-transform:uppercase;
+  color:var(--ink);font-weight:800;margin-bottom:2.4mm;
+}
+.name{
+  font-family:'Playfair Display',serif;font-style:italic;font-weight:900;
+  font-size:29pt;line-height:1.08;letter-spacing:-.01em;
+  color:var(--ink);padding-bottom:.04em;
+}
+.name.sm{font-size:25pt}
+
+/* double hairline divider */
+.rule{
+  width:30mm;height:1.4mm;margin:3mm 0 3mm;
+  background:
+    linear-gradient(var(--ink),var(--ink)) center top / 100% .5mm no-repeat,
+    linear-gradient(var(--ink-dim),var(--ink-dim)) center bottom / 60% .35mm no-repeat;
+}
+
+/* ---------- Camp details ---------- */
+.theme{
+  font-family:'Playfair Display',serif;font-style:italic;font-weight:900;
+  font-size:17pt;color:var(--ink);letter-spacing:.01em;line-height:1.1;
+}
+.dates{
+  font-size:9.6pt;font-weight:800;color:var(--ink);
+  letter-spacing:.06em;margin-top:2.6mm;
+}
+.venue{
+  font-size:8.5pt;font-weight:600;color:var(--ink);letter-spacing:.03em;
+  margin-top:1.3mm;line-height:1.45;
+}
+/* sits between .dates (9.6pt) and .theme (17pt) in the hierarchy */
+.church{
+  font-size:12pt;font-weight:700;color:var(--ink);letter-spacing:.02em;
+  margin-top:3.2mm;line-height:1.2;
+}
+.org{
+  font-size:7pt;font-weight:700;color:var(--ink-mid);letter-spacing:.18em;
+  text-transform:uppercase;margin-top:1.6mm;
+}
+
+/* blank cards (last page) — the name line still reserves its full height so the
+   rest of the card sits exactly where it does on a named one */
+.name.blank{min-height:1.08em}
+</style>
+</head>
+<body>
+
+<!-- ================= PAGE 1 ================= -->
+<div class="sheet">
+  <div class="card">
+    <div class="kicker">Called to Greatness 2026</div>
+    <div class="name">Joel</div>
+    <div class="rule"></div>
+    <div class="theme">Go Deeper</div>
+    <div class="dates">30 July – 2 August 2026</div>
+    <div class="venue">Grand Kampar Hotel<br>Kampar, Perak</div>
+    <div class="church">New Life Sanctuary KL</div>
+    <div class="org">UPC West Malaysia · Family Camp</div>
+  </div>
+  <div class="card">
+    <div class="kicker">Called to Greatness 2026</div>
+    <div class="name">Har Wai</div>
+    <div class="rule"></div>
+    <div class="theme">Go Deeper</div>
+    <div class="dates">30 July – 2 August 2026</div>
+    <div class="venue">Grand Kampar Hotel<br>Kampar, Perak</div>
+    <div class="church">New Life Sanctuary KL</div>
+    <div class="org">UPC West Malaysia · Family Camp</div>
+  </div>
+  <div class="card">
+    <div class="kicker">Called to Greatness 2026</div>
+    <div class="name">Justin</div>
+    <div class="rule"></div>
+    <div class="theme">Go Deeper</div>
+    <div class="dates">30 July – 2 August 2026</div>
+    <div class="venue">Grand Kampar Hotel<br>Kampar, Perak</div>
+    <div class="church">New Life Sanctuary KL</div>
+    <div class="org">UPC West Malaysia · Family Camp</div>
+  </div>
+  <div class="card">
+    <div class="kicker">Called to Greatness 2026</div>
+    <div class="name">Carlos</div>
+    <div class="rule"></div>
+    <div class="theme">Go Deeper</div>
+    <div class="dates">30 July – 2 August 2026</div>
+    <div class="venue">Grand Kampar Hotel<br>Kampar, Perak</div>
+    <div class="church">New Life Sanctuary KL</div>
+    <div class="org">UPC West Malaysia · Family Camp</div>
+  </div>
+  <div class="card">
+    <div class="kicker">Called to Greatness 2026</div>
+    <div class="name">Edith</div>
+    <div class="rule"></div>
+    <div class="theme">Go Deeper</div>
+    <div class="dates">30 July – 2 August 2026</div>
+    <div class="venue">Grand Kampar Hotel<br>Kampar, Perak</div>
+    <div class="church">New Life Sanctuary KL</div>
+    <div class="org">UPC West Malaysia · Family Camp</div>
+  </div>
+  <div class="card">
+    <div class="kicker">Called to Greatness 2026</div>
+    <div class="name">Kate</div>
+    <div class="rule"></div>
+    <div class="theme">Go Deeper</div>
+    <div class="dates">30 July – 2 August 2026</div>
+    <div class="venue">Grand Kampar Hotel<br>Kampar, Perak</div>
+    <div class="church">New Life Sanctuary KL</div>
+    <div class="org">UPC West Malaysia · Family Camp</div>
+  </div>
+  <div class="card">
+    <div class="kicker">Called to Greatness 2026</div>
+    <div class="name">Katherine</div>
+    <div class="rule"></div>
+    <div class="theme">Go Deeper</div>
+    <div class="dates">30 July – 2 August 2026</div>
+    <div class="venue">Grand Kampar Hotel<br>Kampar, Perak</div>
+    <div class="church">New Life Sanctuary KL</div>
+    <div class="org">UPC West Malaysia · Family Camp</div>
+  </div>
+  <div class="card">
+    <div class="kicker">Called to Greatness 2026</div>
+    <div class="name">Lucia</div>
+    <div class="rule"></div>
+    <div class="theme">Go Deeper</div>
+    <div class="dates">30 July – 2 August 2026</div>
+    <div class="venue">Grand Kampar Hotel<br>Kampar, Perak</div>
+    <div class="church">New Life Sanctuary KL</div>
+    <div class="org">UPC West Malaysia · Family Camp</div>
+  </div>
+</div>
+
+<!-- ================= PAGE 2 ================= -->
+<div class="sheet">
+  <div class="card">
+    <div class="kicker">Called to Greatness 2026</div>
+    <div class="name">Judee</div>
+    <div class="rule"></div>
+    <div class="theme">Go Deeper</div>
+    <div class="dates">30 July – 2 August 2026</div>
+    <div class="venue">Grand Kampar Hotel<br>Kampar, Perak</div>
+    <div class="church">New Life Sanctuary KL</div>
+    <div class="org">UPC West Malaysia · Family Camp</div>
+  </div>
+  <div class="card">
+    <div class="kicker">Called to Greatness 2026</div>
+    <div class="name">Daisy</div>
+    <div class="rule"></div>
+    <div class="theme">Go Deeper</div>
+    <div class="dates">30 July – 2 August 2026</div>
+    <div class="venue">Grand Kampar Hotel<br>Kampar, Perak</div>
+    <div class="church">New Life Sanctuary KL</div>
+    <div class="org">UPC West Malaysia · Family Camp</div>
+  </div>
+  <div class="card">
+    <div class="kicker">Called to Greatness 2026</div>
+    <div class="name">Carolyn</div>
+    <div class="rule"></div>
+    <div class="theme">Go Deeper</div>
+    <div class="dates">30 July – 2 August 2026</div>
+    <div class="venue">Grand Kampar Hotel<br>Kampar, Perak</div>
+    <div class="church">New Life Sanctuary KL</div>
+    <div class="org">UPC West Malaysia · Family Camp</div>
+  </div>
+  <div class="card">
+    <div class="kicker">Called to Greatness 2026</div>
+    <div class="name">Esther</div>
+    <div class="rule"></div>
+    <div class="theme">Go Deeper</div>
+    <div class="dates">30 July – 2 August 2026</div>
+    <div class="venue">Grand Kampar Hotel<br>Kampar, Perak</div>
+    <div class="church">New Life Sanctuary KL</div>
+    <div class="org">UPC West Malaysia · Family Camp</div>
+  </div>
+  <div class="card">
+    <div class="kicker">Called to Greatness 2026</div>
+    <div class="name sm">Sara Rani</div>
+    <div class="rule"></div>
+    <div class="theme">Go Deeper</div>
+    <div class="dates">30 July – 2 August 2026</div>
+    <div class="venue">Grand Kampar Hotel<br>Kampar, Perak</div>
+    <div class="church">New Life Sanctuary KL</div>
+    <div class="org">UPC West Malaysia · Family Camp</div>
+  </div>
+  <div class="card">
+    <div class="kicker">Called to Greatness 2026</div>
+    <div class="name">Chandra</div>
+    <div class="rule"></div>
+    <div class="theme">Go Deeper</div>
+    <div class="dates">30 July – 2 August 2026</div>
+    <div class="venue">Grand Kampar Hotel<br>Kampar, Perak</div>
+    <div class="church">New Life Sanctuary KL</div>
+    <div class="org">UPC West Malaysia · Family Camp</div>
+  </div>
+  <div class="card">
+    <div class="kicker">Called to Greatness 2026</div>
+    <div class="name">Dass</div>
+    <div class="rule"></div>
+    <div class="theme">Go Deeper</div>
+    <div class="dates">30 July – 2 August 2026</div>
+    <div class="venue">Grand Kampar Hotel<br>Kampar, Perak</div>
+    <div class="church">New Life Sanctuary KL</div>
+    <div class="org">UPC West Malaysia · Family Camp</div>
+  </div>
+  <div class="card">
+    <div class="kicker">Called to Greatness 2026</div>
+    <div class="name">Brandon</div>
+    <div class="rule"></div>
+    <div class="theme">Go Deeper</div>
+    <div class="dates">30 July – 2 August 2026</div>
+    <div class="venue">Grand Kampar Hotel<br>Kampar, Perak</div>
+    <div class="church">New Life Sanctuary KL</div>
+    <div class="org">UPC West Malaysia · Family Camp</div>
+  </div>
+</div>
+
+<!-- ================= PAGE 3 ================= -->
+<div class="sheet">
+  <div class="card">
+    <div class="kicker">Called to Greatness 2026</div>
+    <div class="name">Beverly</div>
+    <div class="rule"></div>
+    <div class="theme">Go Deeper</div>
+    <div class="dates">30 July – 2 August 2026</div>
+    <div class="venue">Grand Kampar Hotel<br>Kampar, Perak</div>
+    <div class="church">New Life Sanctuary KL</div>
+    <div class="org">UPC West Malaysia · Family Camp</div>
+  </div>
+  <div class="card">
+    <div class="kicker">Called to Greatness 2026</div>
+    <div class="name">Maritess</div>
+    <div class="rule"></div>
+    <div class="theme">Go Deeper</div>
+    <div class="dates">30 July – 2 August 2026</div>
+    <div class="venue">Grand Kampar Hotel<br>Kampar, Perak</div>
+    <div class="church">New Life Sanctuary KL</div>
+    <div class="org">UPC West Malaysia · Family Camp</div>
+  </div>
+  <div class="card">
+    <div class="kicker">Called to Greatness 2026</div>
+    <div class="name">Zenaida</div>
+    <div class="rule"></div>
+    <div class="theme">Go Deeper</div>
+    <div class="dates">30 July – 2 August 2026</div>
+    <div class="venue">Grand Kampar Hotel<br>Kampar, Perak</div>
+    <div class="church">New Life Sanctuary KL</div>
+    <div class="org">UPC West Malaysia · Family Camp</div>
+  </div>
+  <div class="card">
+    <div class="kicker">Called to Greatness 2026</div>
+    <div class="name">Charissa</div>
+    <div class="rule"></div>
+    <div class="theme">Go Deeper</div>
+    <div class="dates">30 July – 2 August 2026</div>
+    <div class="venue">Grand Kampar Hotel<br>Kampar, Perak</div>
+    <div class="church">New Life Sanctuary KL</div>
+    <div class="org">UPC West Malaysia · Family Camp</div>
+  </div>
+  <div class="card">
+    <div class="kicker">Called to Greatness 2026</div>
+    <div class="name">Lalidhaa</div>
+    <div class="rule"></div>
+    <div class="theme">Go Deeper</div>
+    <div class="dates">30 July – 2 August 2026</div>
+    <div class="venue">Grand Kampar Hotel<br>Kampar, Perak</div>
+    <div class="church">New Life Sanctuary KL</div>
+    <div class="org">UPC West Malaysia · Family Camp</div>
+  </div>
+  <div class="card">
+    <div class="kicker">Called to Greatness 2026</div>
+    <div class="name">Lavanyaa</div>
+    <div class="rule"></div>
+    <div class="theme">Go Deeper</div>
+    <div class="dates">30 July – 2 August 2026</div>
+    <div class="venue">Grand Kampar Hotel<br>Kampar, Perak</div>
+    <div class="church">New Life Sanctuary KL</div>
+    <div class="org">UPC West Malaysia · Family Camp</div>
+  </div>
+  <div class="card">
+    <div class="kicker">Called to Greatness 2026</div>
+    <div class="name">Jiven</div>
+    <div class="rule"></div>
+    <div class="theme">Go Deeper</div>
+    <div class="dates">30 July – 2 August 2026</div>
+    <div class="venue">Grand Kampar Hotel<br>Kampar, Perak</div>
+    <div class="church">New Life Sanctuary KL</div>
+    <div class="org">UPC West Malaysia · Family Camp</div>
+  </div>
+  <div class="card">
+    <div class="kicker">Called to Greatness 2026</div>
+    <div class="name">Darmesh</div>
+    <div class="rule"></div>
+    <div class="theme">Go Deeper</div>
+    <div class="dates">30 July – 2 August 2026</div>
+    <div class="venue">Grand Kampar Hotel<br>Kampar, Perak</div>
+    <div class="church">New Life Sanctuary KL</div>
+    <div class="org">UPC West Malaysia · Family Camp</div>
+  </div>
+</div>
+
+<!-- ================= PAGE 4 — Super + 7 spares, names left blank ================= -->
+<div class="sheet">
+  <div class="card">
+    <div class="kicker">Called to Greatness 2026</div>
+    <div class="name">Super</div>
+    <div class="rule"></div>
+    <div class="theme">Go Deeper</div>
+    <div class="dates">30 July – 2 August 2026</div>
+    <div class="venue">Grand Kampar Hotel<br>Kampar, Perak</div>
+    <div class="church">New Life Sanctuary KL</div>
+    <div class="org">UPC West Malaysia · Family Camp</div>
+  </div>
+  <div class="card">
+    <div class="kicker">Called to Greatness 2026</div>
+    <div class="name blank"></div>
+    <div class="rule"></div>
+    <div class="theme">Go Deeper</div>
+    <div class="dates">30 July – 2 August 2026</div>
+    <div class="venue">Grand Kampar Hotel<br>Kampar, Perak</div>
+    <div class="church">New Life Sanctuary KL</div>
+    <div class="org">UPC West Malaysia · Family Camp</div>
+  </div>
+  <div class="card">
+    <div class="kicker">Called to Greatness 2026</div>
+    <div class="name blank"></div>
+    <div class="rule"></div>
+    <div class="theme">Go Deeper</div>
+    <div class="dates">30 July – 2 August 2026</div>
+    <div class="venue">Grand Kampar Hotel<br>Kampar, Perak</div>
+    <div class="church">New Life Sanctuary KL</div>
+    <div class="org">UPC West Malaysia · Family Camp</div>
+  </div>
+  <div class="card">
+    <div class="kicker">Called to Greatness 2026</div>
+    <div class="name blank"></div>
+    <div class="rule"></div>
+    <div class="theme">Go Deeper</div>
+    <div class="dates">30 July – 2 August 2026</div>
+    <div class="venue">Grand Kampar Hotel<br>Kampar, Perak</div>
+    <div class="church">New Life Sanctuary KL</div>
+    <div class="org">UPC West Malaysia · Family Camp</div>
+  </div>
+  <div class="card">
+    <div class="kicker">Called to Greatness 2026</div>
+    <div class="name blank"></div>
+    <div class="rule"></div>
+    <div class="theme">Go Deeper</div>
+    <div class="dates">30 July – 2 August 2026</div>
+    <div class="venue">Grand Kampar Hotel<br>Kampar, Perak</div>
+    <div class="church">New Life Sanctuary KL</div>
+    <div class="org">UPC West Malaysia · Family Camp</div>
+  </div>
+  <div class="card">
+    <div class="kicker">Called to Greatness 2026</div>
+    <div class="name blank"></div>
+    <div class="rule"></div>
+    <div class="theme">Go Deeper</div>
+    <div class="dates">30 July – 2 August 2026</div>
+    <div class="venue">Grand Kampar Hotel<br>Kampar, Perak</div>
+    <div class="church">New Life Sanctuary KL</div>
+    <div class="org">UPC West Malaysia · Family Camp</div>
+  </div>
+  <div class="card">
+    <div class="kicker">Called to Greatness 2026</div>
+    <div class="name blank"></div>
+    <div class="rule"></div>
+    <div class="theme">Go Deeper</div>
+    <div class="dates">30 July – 2 August 2026</div>
+    <div class="venue">Grand Kampar Hotel<br>Kampar, Perak</div>
+    <div class="church">New Life Sanctuary KL</div>
+    <div class="org">UPC West Malaysia · Family Camp</div>
+  </div>
+  <div class="card">
+    <div class="kicker">Called to Greatness 2026</div>
+    <div class="name blank"></div>
+    <div class="rule"></div>
+    <div class="theme">Go Deeper</div>
+    <div class="dates">30 July – 2 August 2026</div>
+    <div class="venue">Grand Kampar Hotel<br>Kampar, Perak</div>
+    <div class="church">New Life Sanctuary KL</div>
+    <div class="org">UPC West Malaysia · Family Camp</div>
+  </div>
+</div>
+
+</body>
+</html>
