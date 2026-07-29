@@ -157,6 +157,13 @@ td.span{
 td.span .ev{font-family:'Playfair Display',serif;font-style:italic;font-size:15.5pt;font-weight:700}
 td.span .sub{font-size:10pt;margin-top:2mm}
 
+/* ---------- Footnote ---------- */
+.note{
+  position:relative;z-index:1;
+  margin-top:4mm;font-size:9.5pt;color:var(--ink-dim);letter-spacing:.02em;
+}
+.note .star{color:var(--teal);font-weight:700}
+
 /* ---------- Footer ---------- */
 footer{
   position:relative;z-index:1;
@@ -247,11 +254,11 @@ footer .fx.r::after{content:"";width:8mm;height:1px;background:var(--crimson-sof
 
         <tr>
           <td class="time">12:30 PM</td>
-          <td><span class="ev">Lunch</span></td>
+          <td><span class="ev">Lunch</span><span class="sub">Outside</span></td>
           <td><span class="ev">Lunch</span><span class="sub">In House</span></td>
           <td><span class="ev">Checkout &amp; Lunch</span>
             <span class="sub"><b>Checkout by 12:00 PM</b><br>
-            Lunch · 12:30 – 1:30 PM</span></td>
+            Lunch · 12:30 – 1:30 PM · In House</span></td>
         </tr>
 
         <tr>
@@ -305,6 +312,8 @@ footer .fx.r::after{content:"";width:8mm;height:1px;background:var(--crimson-sof
       </tbody>
     </table>
   </div>
+
+  <p class="note"><span class="star">*</span> All in-house meals are for stay-in participants only.</p>
 
   <footer>
     <span class="fx">United Pentecostal Church of West Malaysia</span>

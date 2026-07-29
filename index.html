@@ -354,13 +354,35 @@ header.nav.scrolled{
 .slot .title{font-weight:600;font-size:1.02rem;margin-top:2px}
 .slot .detail{color:var(--ink-dim);font-size:.9rem;margin-top:4px}
 .slot .detail .who{color:var(--crimson-soft);font-weight:500}
+/* kids venue sits apart from the session/sermon lines above it (matches A3) */
+.slot .detail .kids{display:block;margin-top:6px}
 .slot.major::before{background:var(--crimson);border-color:var(--crimson-soft);box-shadow:0 0 0 4px rgba(226,58,78,.14)}
 .tracklist{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}
 .tracklist .tk{background:var(--glass-2);border:1px solid var(--line);border-radius:10px;padding:8px 10px}
 .tracklist .tk b{display:block;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--teal)}
 .tracklist .tk span{font-size:.82rem;color:var(--ink-dim)}
+/* prev / next day pager under the timeline */
+.day-nav{display:flex;gap:12px;margin-top:34px;padding-top:24px;border-top:1px solid var(--line)}
+.day-nav-btn{
+  flex:1 1 0;min-width:0;cursor:pointer;
+  display:flex;align-items:center;gap:14px;
+  background:var(--glass);border:1px solid var(--line);border-radius:14px;
+  padding:14px 18px;color:var(--ink-dim);transition:all .25s var(--ease);
+}
+.day-nav-btn:hover{border-color:var(--teal);color:var(--ink);transform:translateY(-2px)}
+.day-nav-btn[hidden]{display:none}
+.day-nav-btn.next{justify-content:flex-end;text-align:right}
+.dn-arrow{font-size:1.15rem;line-height:1;color:var(--teal);flex:none}
+.dn-text{display:flex;flex-direction:column;gap:3px;min-width:0}
+.dn-kicker{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint)}
+.dn-day{font-family:'Bebas Neue';font-size:1.25rem;letter-spacing:.04em;line-height:1;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* at either end of the camp the lone button keeps to its own side rather than stretching across */
+.day-nav.only-next .day-nav-btn.next{flex:0 1 auto;margin-left:auto}
+.day-nav.only-prev .day-nav-btn.prev{flex:0 1 auto;margin-right:auto}
+
 .sched-note{margin-top:22px;font-size:.82rem;color:var(--ink-faint);display:flex;gap:8px;align-items:flex-start}
 .sched-note svg{width:16px;height:16px;color:var(--gold);flex:none;margin-top:2px}
+.sched-note .note-star{color:var(--teal);font-weight:700;flex:none}
 
 /* live "you are here" status banner */
 .sched-status{
@@ -521,6 +543,10 @@ footer .credit{margin-top:18px;font-size:.72rem;color:var(--ink-faint)}
   section{padding:72px 0}
   .church-grid,.dept-grid,.connect-grid,.tracklist{grid-template-columns:1fr}
   .hero-logos{flex-wrap:wrap;gap:14px}
+  /* keep prev/next on one row — trim the padding instead of wrapping */
+  .day-nav{gap:8px}
+  .day-nav-btn{padding:12px 13px;gap:9px}
+  .dn-day{font-size:1.05rem}
   .cd-cell{min-width:68px}
   .cd-cell b{font-size:2rem}
   .hero{padding-top:104px}
@@ -791,7 +817,7 @@ footer .credit{margin-top:18px;font-size:.72rem;color:var(--ink-faint)}
         <div class="slot" data-start="2026-07-30T19:15:00+08:00"><div class="time">7:15 PM</div><div class="title">Security Briefing</div></div>
         <div class="slot" data-start="2026-07-30T19:30:00+08:00"><div class="time">7:30 PM</div><div class="title">Prayer</div></div>
         <div class="slot major" data-start="2026-07-30T20:00:00+08:00"><div class="time">8:00 PM</div><div class="title">Opening Service</div>
-          <div class="detail">Opening Address — <span class="who">Rev. Sam Ponusamy</span><br>Worship<br>Sermon — <span class="who">Rev. Lonnie Vestal</span></div>
+          <div class="detail">Opening Address — <span class="who">Rev. Sam Ponusamy</span><br>Worship<br>Sermon — <span class="who">Rev. Lonnie Vestal</span><span class="kids">Kids — Pewter 2</span></div>
         </div>
         <div class="slot" data-start="2026-07-30T22:30:00+08:00"><div class="time">10:30 PM</div><div class="title">Dismiss</div></div>
       </div>
@@ -804,18 +830,18 @@ footer .credit{margin-top:18px;font-size:.72rem;color:var(--ink-faint)}
         <div class="slot" data-start="2026-07-31T08:00:00+08:00"><div class="time">8:00 AM</div><div class="title">Breakfast</div></div>
         <div class="slot" data-start="2026-07-31T09:00:00+08:00"><div class="time">9:00 AM</div><div class="title">Morning Service</div><div class="detail">Worship</div></div>
         <div class="slot major" data-start="2026-07-31T09:45:00+08:00"><div class="time">9:45 AM</div><div class="title">Day Session 1</div>
-          <div class="detail"><span class="who">Rev. Joel Bean</span></div>
+          <div class="detail"><span class="who">Rev. Joel Bean</span><span class="kids">Kids — Pewter 2</span></div>
         </div>
         <div class="slot" data-start="2026-07-31T10:45:00+08:00"><div class="time">10:45 AM</div><div class="title">Break</div></div>
         <div class="slot" data-start="2026-07-31T11:00:00+08:00"><div class="time">11:00 AM</div><div class="title">Day Session 2 — Breakout</div>
           <div class="detail">Adults — Treasure Hall · <span class="who">Rev. Lonnie Vestal</span><br>Youths — Pewter 1 · <span class="who">Rev. Joel Bean</span><br>Kids — Pewter 2</div>
         </div>
-        <div class="slot" data-start="2026-07-31T12:30:00+08:00"><div class="time">12:30 PM</div><div class="title">Lunch</div><div class="detail">Outside</div></div>
+        <div class="slot" data-start="2026-07-31T12:30:00+08:00"><div class="time">12:30 PM</div><div class="title">Lunch</div><div class="detail">12:30 – 1:30 PM · Outside</div></div>
         <div class="slot" data-start="2026-07-31T15:00:00+08:00"><div class="time">3:00 – 5:00 PM</div><div class="title">Recreational Activities</div></div>
         <div class="slot" data-start="2026-07-31T18:00:00+08:00"><div class="time">6:00 PM</div><div class="title">Dinner</div></div>
         <div class="slot" data-start="2026-07-31T19:30:00+08:00"><div class="time">7:30 PM</div><div class="title">Prayer</div></div>
         <div class="slot major" data-start="2026-07-31T20:00:00+08:00"><div class="time">8:00 PM</div><div class="title">Evening Service</div>
-          <div class="detail">Worship<br>Sermon — <span class="who">Rev. Joel Bean</span></div>
+          <div class="detail">Worship<br>Sermon — <span class="who">Rev. Joel Bean</span><span class="kids">Kids — Pewter 2</span></div>
         </div>
         <div class="slot" data-start="2026-07-31T22:30:00+08:00"><div class="time">10:30 PM</div><div class="title">Dismiss</div></div>
       </div>
@@ -828,7 +854,7 @@ footer .credit{margin-top:18px;font-size:.72rem;color:var(--ink-faint)}
         <div class="slot" data-start="2026-08-01T08:00:00+08:00"><div class="time">8:00 AM</div><div class="title">Breakfast</div></div>
         <div class="slot" data-start="2026-08-01T09:00:00+08:00"><div class="time">9:00 AM</div><div class="title">Morning Service</div><div class="detail">Worship</div></div>
         <div class="slot major" data-start="2026-08-01T09:45:00+08:00"><div class="time">9:45 AM</div><div class="title">Day Session 3</div>
-          <div class="detail"><span class="who">Rev. Lonnie Vestal</span></div>
+          <div class="detail"><span class="who">Rev. Lonnie Vestal</span><span class="kids">Kids — Pewter 2</span></div>
         </div>
         <div class="slot" data-start="2026-08-01T10:45:00+08:00"><div class="time">10:45 AM</div><div class="title">Break</div></div>
         <div class="slot" data-start="2026-08-01T11:00:00+08:00"><div class="time">11:00 AM</div><div class="title">Day Session 4 — Breakout</div>
@@ -856,9 +882,22 @@ footer .credit{margin-top:18px;font-size:.72rem;color:var(--ink-faint)}
         </div>
         <div class="slot" data-start="2026-08-02T11:00:00+08:00"><div class="time">11:00 AM</div><div class="title">Group Photo Session</div></div>
         <div class="slot" data-start="2026-08-02T12:00:00+08:00"><div class="time">12:00 PM</div><div class="title">Checkout</div><div class="detail">Checkout by 12PM</div></div>
-        <div class="slot" data-start="2026-08-02T12:30:00+08:00"><div class="time">12:30 PM</div><div class="title">Lunch</div><div class="detail">12:30 – 1:30 PM</div></div>
+        <div class="slot" data-start="2026-08-02T12:30:00+08:00"><div class="time">12:30 PM</div><div class="title">Lunch</div><div class="detail">12:30 – 1:30 PM · In House</div></div>
       </div>
     </div>
+
+    <nav class="day-nav reveal" aria-label="Change camp day">
+      <button class="day-nav-btn prev" id="dayPrev" type="button">
+        <span class="dn-arrow" aria-hidden="true">&larr;</span>
+        <span class="dn-text"><span class="dn-kicker">Previous</span><span class="dn-day" id="dayPrevLabel"></span></span>
+      </button>
+      <button class="day-nav-btn next" id="dayNext" type="button">
+        <span class="dn-text"><span class="dn-kicker">Next</span><span class="dn-day" id="dayNextLabel"></span></span>
+        <span class="dn-arrow" aria-hidden="true">&rarr;</span>
+      </button>
+    </nav>
+
+    <p class="sched-note reveal"><span class="note-star" aria-hidden="true">*</span>All in-house meals are for stay-in participants only.</p>
   </div>
 </section>
 
@@ -901,7 +940,7 @@ footer .credit{margin-top:18px;font-size:.72rem;color:var(--ink-faint)}
           <ul>
             <li>Breakfast (Fri–Sun): 8:00 – 9:00 AM</li>
             <li>Dinner (Thu–Sat): 6:00 – 7:00 PM</li>
-            <li>Lunch (Fri–Sun): 12:30 – 1:30 PM</li>
+            <li>Lunch (Fri–Sun): 12:30 – 1:30 PM — in house, except Friday (Day 2) which is outside</li>
           </ul>
         </div>
       </article>
@@ -1320,19 +1359,70 @@ footer .credit{margin-top:18px;font-size:.72rem;color:var(--ink-faint)}
         if(animateSlots && !wasActive) animateSlots(p);
       }
     });
+    syncDayNav(d);
   }
+
+  /* prev / next day pager — hidden at either end of the camp */
+  var dayPrev=document.getElementById('dayPrev'), dayNext=document.getElementById('dayNext');
+  var dayPrevLabel=document.getElementById('dayPrevLabel'), dayNextLabel=document.getElementById('dayNextLabel');
+  function tabFor(d){
+    for(var i=0;i<tabs.length;i++){ if(tabs[i].getAttribute('data-day')===String(d)) return tabs[i]; }
+    return null;
+  }
+  function dayLabel(tab){
+    var b=tab.querySelector('b'), s=tab.querySelector('span');
+    return (b?b.textContent:'')+(s&&s.textContent?' · '+s.textContent:'');
+  }
+  function syncDayNav(d){
+    if(!dayPrev||!dayNext) return;
+    [[dayPrev,dayPrevLabel,Number(d)-1],[dayNext,dayNextLabel,Number(d)+1]].forEach(function(x){
+      var tab=tabFor(x[2]);
+      x[0].hidden=!tab;
+      if(tab){
+        x[0].setAttribute('data-target',x[2]);
+        x[1].textContent=dayLabel(tab);
+      }
+    });
+    var nav=dayPrev.parentNode;
+    nav.classList.toggle('only-next',dayPrev.hidden);
+    nav.classList.toggle('only-prev',dayNext.hidden);
+  }
+  [dayPrev,dayNext].forEach(function(btn){
+    if(!btn) return;
+    btn.addEventListener('click',function(){
+      var d=btn.getAttribute('data-target'); if(!d) return;
+      userPicked=true;
+      activateDay(d);
+      /* the pager sits a full timeline below the tabs — the eased tween's slow
+         ramp over that distance reads as a stall, so snap straight there */
+      scrollToTabs(true);
+    });
+  });
+  /* the live-status pass only calls activateDay during camp, so seed from the markup */
+  var initialTab=document.querySelector('.day-tab.active');
+  syncDayNav(initialTab?initialTab.getAttribute('data-day'):'1');
   var userPicked=false;
   /* After a tab switch, bring the tab row (and the panel under it) into view.
      Own rAF tween rather than behavior:'smooth' — it re-aims every frame, so the
      reveal animations resizing the page mid-flight can't leave us off-target. */
-  function scrollToTabs(){
+  function scrollToTabs(instant){
     var row=document.querySelector('.day-tabs'); if(!row) return;
     var nav=document.querySelector('header.nav');
     var pad=(nav?nav.offsetHeight:0)+16;
     function gap(){ return row.getBoundingClientRect().top-pad; }
     if(Math.abs(gap())<8) return;                /* already parked under the nav */
-    if(reduceMotion || !window.requestAnimationFrame){
-      window.scrollTo(0,Math.max(window.pageYOffset+gap(),0)); return;
+    if(instant || reduceMotion || !window.requestAnimationFrame){
+      window.scrollTo(0,Math.max(window.pageYOffset+gap(),0));
+      /* the outgoing panel's height only settles once the reveal/slot animations
+         have run, so keep re-aiming for a few frames or we land off-target */
+      if(window.requestAnimationFrame){
+        var frames=0;
+        requestAnimationFrame(function settle(){
+          if(Math.abs(gap())>1) window.scrollTo(0,Math.max(window.pageYOffset+gap(),0));
+          if(++frames<12) requestAnimationFrame(settle);
+        });
+      }
+      return;
     }
     var t0=Date.now(), dur=600, ePrev=0;
     requestAnimationFrame(function step(){
