@@ -184,6 +184,9 @@ const browser = spawn(
     '--no-sandbox',
     '--disable-gpu',
     '--hide-scrollbars',
+    // The capture clip cannot exceed the browser window, or Chrome tiles the
+    // frame instead of cropping it — keep the window comfortably larger.
+    `--window-size=${WIDTH + 80},${HEIGHT + 200}`,
     '--disable-extensions',
     '--no-first-run',
     `--remote-debugging-port=${port}`,
