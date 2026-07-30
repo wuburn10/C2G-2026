@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>C2G 2026 — link preview image source (1200 × 630)</title>
+<!--
+  Source artwork for assets/img/og-preview.jpg — the image WhatsApp, Telegram,
+  Facebook, iMessage and X show when booklet.c2g.upcmalaysia.com is shared.
+
+  Regenerate after editing:  node assets/og/render.mjs
+  Canvas is a fixed 1200 × 630 (the 1.91:1 ratio link unfurlers expect).
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --abyss-top:#0c2b30;
+  --abyss-mid:#07181d;
+  --abyss-bottom:#1c0a11;
+  --ink:#f4f1ec;
+  --ink-dim:#a7b6b7;
+  --ink-faint:#6f8082;
+  --teal:#2dd4bf;
+  --teal-deep:#0e7d76;
+  --crimson:#e23a4e;
+  --crimson-soft:#ff5d6c;
+  --line:rgba(255,255,255,.09);
+  --line-strong:rgba(255,255,255,.16);
+  --glass:rgba(255,255,255,.035);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1200px;height:630px;background:var(--abyss-mid)}
+body{
+  font-family:'Inter',system-ui,sans-serif;color:var(--ink);
+  -webkit-font-smoothing:antialiased;overflow:hidden;
+}
+
+/* ---- the frame the screenshot captures ---- */
+#og{
+  position:relative;width:1200px;height:630px;overflow:hidden;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:56px 64px 96px;
+  background:
+    radial-gradient(120% 70% at 50% -14%, rgba(45,212,191,.24), transparent 60%),
+    radial-gradient(90% 42% at 50% 112%, rgba(226,58,78,.30), transparent 62%),
+    linear-gradient(180deg,
+      var(--abyss-top) 0%,
+      var(--abyss-mid) 38%,
+      #0a0f14 64%,
+      var(--abyss-bottom) 100%);
+}
+/* light rays from the surface — same motif as the booklet backdrop */
+#og::before{
+  content:"";position:absolute;inset:0;
+  background:conic-gradient(from 180deg at 50% -6%,
+    transparent 0deg, rgba(45,212,191,.10) 12deg, transparent 24deg,
+    rgba(45,212,191,.07) 40deg, transparent 60deg, rgba(255,255,255,.05) 80deg,
+    transparent 100deg, rgba(45,212,191,.08) 130deg, transparent 160deg);
+  -webkit-mask-image:linear-gradient(180deg,#000,transparent 58%);
+  mask-image:linear-gradient(180deg,#000,transparent 58%);
+  opacity:.75;
+}
+#og > *{position:relative;z-index:2}
+
+.logos{display:flex;align-items:center;justify-content:center;gap:20px;margin-bottom:26px}
+.logos img{height:62px;width:auto;object-fit:contain;display:block}
+.logos img.c2g{height:68px}
+.logos .divider{width:1px;height:42px;background:var(--line-strong)}
+
+.pretitle{
+  font-size:17px;letter-spacing:.42em;text-transform:uppercase;
+  color:var(--ink-dim);font-weight:500;
+}
+.theme{
+  font-family:'Playfair Display',serif;font-style:italic;font-weight:900;
+  font-size:148px;line-height:1.06;letter-spacing:-.02em;
+  background:linear-gradient(95deg,var(--teal) 0%,#eafffb 32%,var(--crimson-soft) 70%,var(--crimson) 100%);
+  background-repeat:no-repeat;background-size:112% 100%;background-position:-2% 0;
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 14px 60px rgba(226,58,78,.22));
+  /* the italic overhang needs room, or background-clip:text shears the last glyph */
+  margin:2px 0 6px;padding:0 .09em .06em;
+}
+.subtitle{
+  font-size:19px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-dim);font-weight:500;
+}
+.meta{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:32px}
+.pill{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--glass);border:1px solid var(--line);
+  padding:12px 22px;border-radius:999px;font-size:19px;color:var(--ink);
+}
+.pill svg{width:19px;height:19px;color:var(--teal);flex:none}
+
+.speakers{
+  margin-top:24px;font-size:15px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-faint);
+}
+.speakers b{color:var(--ink-dim);font-weight:600}
+
+/* heritage hotel silhouette along the base — lifted from the booklet hero */
+.silhouette{
+  position:absolute;left:0;right:0;bottom:0;width:100%;height:124px;
+  opacity:.5;z-index:1;
+}
+.silhouette svg{width:100%;height:100%;display:block}
+</style>
+</head>
+<body>
+<div id="og">
+  <div class="logos">
+    <img class="c2g" src="../img/C2G.png" alt="" />
+    <span class="divider"></span>
+    <img src="../img/UPCWM.png" alt="" />
+  </div>
+
+  <div class="pretitle">Called to Greatness &middot; 2026</div>
+  <div class="theme">Go Deeper</div>
+  <div class="subtitle">UPC West Malaysia Annual Family Camp</div>
+
+  <div class="meta">
+    <span class="pill">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      30 July &ndash; 2 August 2026
+    </span>
+    <span class="pill">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      Grand Kampar Hotel, Perak
+    </span>
+  </div>
+
+  <div class="speakers">
+    <b>Rev. Joel Bean</b> &nbsp;&middot;&nbsp; <b>Rev. Lonnie Vestal</b>
+  </div>
+
+  <div class="silhouette" aria-hidden="true">
+    <!--
+      The booklet hero's heritage-hotel skyline, trimmed for this canvas: the
+      full-width outer blocks are dropped so the shape reads as a building
+      against the depths instead of a solid bar along the bottom edge.
+    -->
+    <svg viewBox="0 0 1200 120" preserveAspectRatio="none" fill="#07090c">
+      <rect x="430" y="40" width="340" height="80"/>
+      <rect x="470" y="18" width="260" height="30"/>
+      <polygon points="600,0 560,20 640,20"/>
+      <rect x="595" y="2" width="10" height="20"/>
+      <rect x="350" y="62" width="90" height="58"/>
+      <rect x="760" y="62" width="90" height="58"/>
+      <rect x="250" y="80" width="110" height="40"/>
+      <rect x="840" y="80" width="110" height="40"/>
+      <g fill="#16262b">
+        <rect x="455" y="52" width="14" height="18"/><rect x="485" y="52" width="14" height="18"/><rect x="515" y="52" width="14" height="18"/><rect x="545" y="52" width="14" height="18"/><rect x="640" y="52" width="14" height="18"/><rect x="670" y="52" width="14" height="18"/><rect x="700" y="52" width="14" height="18"/><rect x="730" y="52" width="14" height="18"/>
+      </g>
+    </svg>
+  </div>
+</div>
+</body>
+</html>
