@@ -271,6 +271,48 @@ header.nav.scrolled{
 .cd-cell b{font-family:'Bebas Neue',sans-serif;font-size:2.6rem;line-height:1;color:var(--ink);display:block}
 .cd-cell span{font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-faint)}
 
+/* replay CTA (hero + section) — [hidden] must beat the flex displays below */
+[hidden]{display:none!important}
+.hero-replay{display:flex;flex-direction:column;align-items:center;gap:14px;margin-top:40px}
+.watch-btn{
+  display:inline-flex;align-items:center;gap:11px;
+  background:var(--crimson);color:#fff;text-decoration:none;
+  padding:15px 30px;border-radius:999px;font-weight:600;font-size:1rem;
+  box-shadow:0 14px 34px -14px rgba(226,58,78,.95);
+  transition:transform .2s var(--ease),background .2s,box-shadow .2s;
+}
+.watch-btn:hover{background:var(--crimson-soft);transform:translateY(-2px);box-shadow:0 18px 40px -14px rgba(226,58,78,1)}
+.watch-btn svg{width:22px;height:22px;flex:none}
+.watch-note{font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-faint)}
+.watch-ghost{
+  display:inline-flex;align-items:center;
+  color:var(--ink-dim);text-decoration:none;font-size:.9rem;font-weight:500;
+  padding:15px 24px;border-radius:999px;border:1px solid var(--line-strong);
+  transition:color .2s,border-color .2s,background .2s;
+}
+.watch-ghost:hover{color:var(--ink);border-color:var(--teal);background:var(--glass)}
+
+.replay-band{
+  display:flex;align-items:center;gap:48px;
+  background:linear-gradient(120deg,rgba(226,58,78,.10),rgba(45,212,191,.07));
+  border:1px solid var(--line);border-radius:var(--r);padding:44px 46px;
+}
+.replay-copy{flex:1;min-width:0}
+.replay-copy .sec-title{margin-bottom:0}
+.replay-actions{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:30px}
+.replay-art{position:relative;width:170px;height:170px;flex:none;display:flex;align-items:center;justify-content:center}
+.rp-play{
+  position:relative;z-index:2;width:88px;height:88px;border-radius:50%;
+  background:linear-gradient(135deg,var(--crimson),var(--teal-deep));
+  display:flex;align-items:center;justify-content:center;color:#fff;
+  box-shadow:0 18px 44px -16px rgba(226,58,78,.9);
+}
+.rp-play svg{width:34px;height:34px;margin-left:4px}
+.rp-ring{position:absolute;inset:22px;border-radius:50%;border:1px solid rgba(226,58,78,.35);animation:rpring 3.2s var(--ease) infinite}
+.rp-ring-2{inset:2px;border-color:rgba(45,212,191,.28);animation-delay:1.6s}
+@keyframes rpring{0%{transform:scale(.85);opacity:0}40%{opacity:.9}100%{transform:scale(1.18);opacity:0}}
+@media (prefers-reduced-motion:reduce){.rp-ring{animation:none;opacity:.5}}
+
 .scroll-cue{margin-top:54px;display:inline-flex;flex-direction:column;align-items:center;gap:8px;color:var(--ink-faint);font-size:.62rem;letter-spacing:.28em;text-transform:uppercase}
 .scroll-cue .dot{width:22px;height:34px;border:1.5px solid var(--line-strong);border-radius:14px;position:relative}
 .scroll-cue .dot::after{content:"";position:absolute;left:50%;top:7px;width:3px;height:7px;border-radius:3px;background:var(--teal);transform:translateX(-50%);animation:cue 1.6s var(--ease) infinite}
@@ -405,6 +447,8 @@ header.nav.scrolled{
 .ss-label{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint)}
 .ss-val{font-size:1rem;font-weight:600;color:var(--ink);line-height:1.3}
 .ss-val strong{color:var(--crimson-soft)}
+.ss-link{color:var(--crimson-soft);text-decoration:none;border-bottom:1px solid rgba(255,93,108,.4);transition:color .2s,border-color .2s}
+.ss-link:hover{color:var(--ink);border-color:var(--ink)}
 .ss-val small{display:block;font-weight:400;font-size:.78rem;color:var(--ink-dim);letter-spacing:.01em;margin-top:1px}
 .ss-jump{margin-left:auto;background:var(--crimson);color:#fff;border:none;border-radius:999px;padding:10px 18px;font-weight:600;font-size:.82rem;cursor:pointer;white-space:nowrap;transition:background .2s,transform .2s;box-shadow:0 6px 18px -8px rgba(226,58,78,.8)}
 .ss-jump:hover{background:var(--crimson-soft);transform:translateY(-2px)}
@@ -535,6 +579,10 @@ footer .credit{margin-top:18px;font-size:.72rem;color:var(--ink-faint)}
   .church-grid,.dept-grid{grid-template-columns:repeat(2,1fr)}
   .connect-grid{grid-template-columns:repeat(3,1fr)}
   .gauge{display:none}
+  .replay-band{flex-direction:column;gap:34px;text-align:center;padding:38px 30px}
+  .replay-copy .lead{margin-left:auto;margin-right:auto}
+  .replay-actions{justify-content:center}
+  .replay-art{order:-1;width:140px;height:140px}
 }
 @media (max-width:760px){
   .nav-links{display:none}
@@ -560,6 +608,8 @@ footer .credit{margin-top:18px;font-size:.72rem;color:var(--ink-faint)}
   .ss-left{min-width:0}
   .ss-cells{flex-direction:column;gap:14px}
   .ss-cell{min-width:0}
+  .watch-btn,.watch-ghost{width:100%;max-width:340px;justify-content:center}
+  .replay-band{padding:32px 22px}
 }
 </style>
 </head>
@@ -584,6 +634,7 @@ footer .credit{margin-top:18px;font-size:.72rem;color:var(--ink-faint)}
     <small>Go&nbsp;Deeper&nbsp;·&nbsp;2026</small>
   </a>
   <nav class="nav-links" aria-label="Section navigation">
+    <a href="#replay" id="navReplay">Replay</a>
     <a href="#welcome">Welcome</a>
     <a href="#speakers">Speakers</a>
     <a href="#schedule">Schedule</a>
@@ -603,6 +654,7 @@ footer .credit{margin-top:18px;font-size:.72rem;color:var(--ink-faint)}
   <div class="drawer-bg" data-close></div>
   <div class="drawer-panel">
     <button class="drawer-close" data-close aria-label="Close menu">&times;</button>
+    <a href="#replay" id="drawerReplay" data-close>Watch the Replay</a>
     <a href="#welcome" data-close>Welcome Messages</a>
     <a href="#speakers" data-close>Speakers</a>
     <a href="#schedule" data-close>Schedule</a>
@@ -658,11 +710,19 @@ footer .credit{margin-top:18px;font-size:.72rem;color:var(--ink-faint)}
     <span class="sp"><span class="avatar">LV</span><span><b>Rev. Lonnie Vestal</b><small>Guest Speaker</small></span></span>
   </div>
 
-  <div class="countdown reveal" id="countdown" aria-label="Countdown to camp">
+  <div class="countdown reveal" id="countdown" aria-label="Countdown to camp" hidden>
     <div class="cd-cell"><b id="cd-days">--</b><span>Days</span></div>
     <div class="cd-cell"><b id="cd-hours">--</b><span>Hours</span></div>
     <div class="cd-cell"><b id="cd-mins">--</b><span>Minutes</span></div>
     <div class="cd-cell"><b id="cd-secs">--</b><span>Seconds</span></div>
+  </div>
+
+  <div class="hero-replay reveal" id="heroReplay">
+    <a class="watch-btn" href="https://www.youtube.com/playlist?list=PLFTRjbKms6Kk" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-2C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.41 19c1.71.46 8.59.46 8.59.46s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="currentColor" stroke="none"/></svg>
+      Watch the replay
+    </a>
+    <span class="watch-note">Every session, recorded &amp; on YouTube</span>
   </div>
 
   <a href="#welcome" class="scroll-cue" aria-label="Scroll to begin">
@@ -686,6 +746,33 @@ footer .credit{margin-top:18px;font-size:.72rem;color:var(--ink-faint)}
         <rect x="455" y="52" width="14" height="18"/><rect x="485" y="52" width="14" height="18"/><rect x="515" y="52" width="14" height="18"/><rect x="545" y="52" width="14" height="18"/><rect x="640" y="52" width="14" height="18"/><rect x="670" y="52" width="14" height="18"/><rect x="700" y="52" width="14" height="18"/><rect x="730" y="52" width="14" height="18"/>
       </g>
     </svg>
+  </div>
+</section>
+
+<!-- ============ REPLAY (the camp is over; JS hides this again only if it isn't) ============ -->
+<section id="replay">
+  <div class="wrap">
+    <div class="replay-band reveal">
+      <div class="replay-copy">
+        <span class="kicker">Missed it &middot; Or want to go back</span>
+        <h2 class="sec-title">Catch the <em>Replay</em></h2>
+        <p class="lead">Camp 2026 is over, but every livestreamed session &mdash; the preaching, the worship, the altar &mdash; is recorded and waiting on YouTube. Watch it back, share it with someone who could not make it, and keep going deeper.</p>
+        <div class="replay-actions">
+          <a class="watch-btn" href="https://www.youtube.com/playlist?list=PLFTRjbKms6Kk" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-2C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.41 19c1.71.46 8.59.46 8.59.46s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="currentColor" stroke="none"/></svg>
+            Watch the full playlist
+          </a>
+          <a class="watch-ghost" href="https://www.youtube.com/@UPCWestMalaysia" target="_blank" rel="noopener">Visit the UPCWM channel</a>
+        </div>
+      </div>
+      <div class="replay-art" aria-hidden="true">
+        <span class="rp-play">
+          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="8 5 19 12 8 19 8 5"/></svg>
+        </span>
+        <span class="rp-ring"></span>
+        <span class="rp-ring rp-ring-2"></span>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1224,6 +1311,10 @@ footer .credit{margin-top:18px;font-size:.72rem;color:var(--ink-faint)}
         <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"/></svg></span>
         <b>Instagram</b><span>@upcwm</span>
       </a>
+      <a class="card social reveal" id="connectReplay" href="https://www.youtube.com/playlist?list=PLFTRjbKms6Kk" target="_blank" rel="noopener">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg></span>
+        <b>Camp Replay</b><span>Every session on YouTube</span>
+      </a>
       <a class="card social reveal" href="https://www.youtube.com/@UPCWestMalaysia" target="_blank" rel="noopener">
         <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-2C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.41 19c1.71.46 8.59.46 8.59.46s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg></span>
         <b>YouTube</b><span>UPC West Malaysia</span>
@@ -1484,6 +1575,17 @@ footer .credit{margin-top:18px;font-size:.72rem;color:var(--ink-faint)}
       ssNow=document.getElementById('ssNow'), ssNext=document.getElementById('ssNext'),
       ssJump=document.getElementById('ssJump');
 
+  /* replay: everything that only makes sense once the camp has finished */
+  var REPLAY_URL='https://www.youtube.com/playlist?list=PLFTRjbKms6Kk';
+  var replayEls=['replay','heroReplay','navReplay','drawerReplay','connectReplay'].map(function(id){
+    return document.getElementById(id);
+  }).filter(Boolean);
+  var countdownEl=document.getElementById('countdown');
+  function showReplay(on){
+    replayEls.forEach(function(el){ el.hidden=!on; });
+    if(countdownEl) countdownEl.hidden=on; /* a countdown to a finished camp is just zeros */
+  }
+
   function lineFor(s){
     var d=dayInfo[s.day]||{};
     return s.title+' <small>'+s.time+' · Day '+s.day+', '+(d.dow||'')+' '+(d.date||'')+'</small>';
@@ -1518,6 +1620,7 @@ footer .credit{margin-top:18px;font-size:.72rem;color:var(--ink-faint)}
     else if(now>=campEnd){ state='ended'; ref=lastSlot; }
     else { state='live'; ref=current||next||lastSlot; }
     statusEl.setAttribute('data-state',state);
+    showReplay(state==='ended');
 
     if(state==='upcoming'){
       ssBadge.textContent='Upcoming';
@@ -1530,8 +1633,8 @@ footer .credit{margin-top:18px;font-size:.72rem;color:var(--ink-faint)}
       ssBadge.textContent='Camp ended';
       ssLabel1.textContent='Thank you';
       ssNow.innerHTML='We went <strong>deeper</strong> together.';
-      ssLabel2.textContent='Until next year';
-      ssNext.innerHTML='See you at the next Called to Greatness.';
+      ssLabel2.textContent='Watch it back';
+      ssNext.innerHTML='<a class="ss-link" href="'+REPLAY_URL+'" target="_blank" rel="noopener">Every session on YouTube &rarr;</a>';
       if(ssJump) ssJump.hidden=true;
     } else {
       ssBadge.textContent='Live now';
@@ -1614,6 +1717,7 @@ footer .credit{margin-top:18px;font-size:.72rem;color:var(--ink-faint)}
       .from('.hero-meta .pill',{y:14,autoAlpha:0,stagger:0.08,duration:0.5},'-=0.35')
       .from('.hero-speakers .sp',{y:14,autoAlpha:0,stagger:0.08,duration:0.5},'-=0.3')
       .from('.countdown .cd-cell',{y:18,scale:0.9,autoAlpha:0,stagger:0.07,duration:0.5,ease:'back.out(1.6)'},'-=0.25')
+      .from('.hero-replay > *',{y:18,autoAlpha:0,stagger:0.1,duration:0.55,ease:'back.out(1.5)',clearProps:'transform'},'-=0.25')
       .from('.scroll-cue',{autoAlpha:0,duration:0.6},'-=0.1');
 
     /* Scroll reveals — staggered batches (replaces the IO fallback) */
